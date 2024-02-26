@@ -9,7 +9,7 @@
 
 // Import the default export from the "@ducanh2912/next-pwa" package.
 // This package is used to turn a Next.js application into a Progressive Web App (PWA).
-const withPWA = require("/next-pwa").default({
+const withPWA = require("@ducanh2912/next-pwa").default({
     // The 'dest' option specifies the directory where the service worker file will be created.
     dest: "public",
 
@@ -43,7 +43,7 @@ const withPWA = require("/next-pwa").default({
 const nextConfig = {};
 
 // Export the Next.js configuration object, but first pass it through the 'withPWA' function to add PWA features.
-module.exports = withPWA(nextConfig);
+export default withPWA(nextConfig);
 
 // The following line is an alternative way to export the configuration object, but it's commented out, so it's not currently in effect.
 // export default nextConfig;
