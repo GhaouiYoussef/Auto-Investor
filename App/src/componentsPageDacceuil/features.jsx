@@ -5,7 +5,7 @@ const Features = () => {
     <section className="features">
       <div className="container">
         <div className="features__inner">
-          <h2 className="features__title">Why Auto Investor</h2>
+          <h2 className="features__title">Why CryptoPal</h2>
           <div className="features__grid">
             <div className="features__item">
               <h3 className="features__item-title">Easy to use</h3>
