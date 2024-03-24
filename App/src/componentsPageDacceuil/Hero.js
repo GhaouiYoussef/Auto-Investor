@@ -1,5 +1,8 @@
 import React from 'react';
 import './Hero.css';
+import { Link } from 'react-router-dom';
+
+
 const Hero = () => {
   return (
     <section className="hero">
@@ -14,9 +17,10 @@ const Hero = () => {
             to invest in crypto assets.
           </p>
           <div className="hero__cta">
-            <a href="/signup" className="button button--primary">
+            <Link to="/Page-Signup" className="button button--primary">
+
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>
