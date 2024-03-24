@@ -12,7 +12,7 @@ const Hero = () => {
             Invest in crypto assets <br /> the easy way
           </h1>
           <p className="hero__subtitle">
-            Auto Investor is a professional platform that simplifies cryptocurrency
+            CryptoPal is a professional platform that simplifies cryptocurrency
             investments. We provide an easy, sophisticated, and trustworthy way
             to invest in crypto assets.
           </p>
