@@ -82,8 +82,10 @@
 }
 
 .submit-container {
+    flex-direction: column;
     display: flex;
-    justify-content: center; /* Optional: Adjust as needed */
+    /* justify-content: center; Optional: Adjust as needed */
+    align-items: center; /* Optional: Adjust as needed */
     gap: 10px; /* Optional: Adjust as needed */
     margin-top: 20px; /* Adjust as needed */
 }
