@@ -1,10 +1,10 @@
 // FAQ.jsx
 import React from 'react';
-import styled from 'styled-components';
+import'./faq.css'
 
 const FAQ = () => {
   return (
-    <StyledFAQ>
+    <div>
       <h2>Frequently Asked Questions</h2>
       <div className="faq-item">
         <h3>How does the auto-investing feature work?</h3>
@@ -34,34 +34,34 @@ const FAQ = () => {
         </p>
       </div>
       {/* Add more FAQ items as needed */}
-    </StyledFAQ>
+      </div>
   );
 };
 
 export default FAQ;
 
-// Styled Components for FAQ
-const StyledFAQ = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+// // Styled Components for FAQ
+// const StyledFAQ = styled.div`
+//   max-width: 800px;
+//   margin: 0 auto;
+//   padding: 20px;
 
-  .faq-item {
-    margin-bottom: 30px;
-  }
+//   .faq-item {
+//     margin-bottom: 30px;
+//   }
 
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+//   h2 {
+//     text-align: center;
+//     margin-bottom: 30px;
+//   }
 
-  h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
+//   h3 {
+//     font-size: 20px;
+//     margin-bottom: 10px;
+//   }
 
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-`;
+//   p {
+//     font-size: 16px;
+//     line-height: 1.6;
+//   }
+// `;

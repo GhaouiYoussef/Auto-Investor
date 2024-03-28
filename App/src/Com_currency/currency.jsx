@@ -1,10 +1,11 @@
 // Currency.jsx
 import React from 'react';
-import styled from 'styled-components';
+import './currency.css';
 
 const Currency = () => {
   return (
-    <StyledCurrency>
+    // <StyledCurrency>
+    <div>
       <h2>Auto-Investing with CryptoPal</h2>
       <p>
         CryptoPal's auto-investing platform offers a revolutionary approach to cryptocurrency investment, 
@@ -33,26 +34,27 @@ const Currency = () => {
         of your financial future and embark on a journey towards wealth creation with CryptoPal as your 
         trusted investment partner.
       </p>
-    </StyledCurrency>
+      </div>
+    // </StyledCurrency>
   );
 };
 
 export default Currency;
 
-// Styled Components for Currency
-const StyledCurrency = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+// // Styled Components for Currency
+// const StyledCurrency = styled.div`
+//   max-width: 800px;
+//   margin: 0 auto;
+//   padding: 20px;
 
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+//   h2 {
+//     text-align: center;
+//     margin-bottom: 30px;
+//   }
 
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-`;
+//   p {
+//     font-size: 16px;
+//     line-height: 1.6;
+//     margin-bottom: 20px;
+//   }
+// `;
