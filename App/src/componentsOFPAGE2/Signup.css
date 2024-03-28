@@ -83,9 +83,11 @@
 
 .submit-container {
     display: flex;
-    gap: 30px;
-    margin: 60px auto;
+    justify-content: center; /* Optional: Adjust as needed */
+    gap: 10px; /* Optional: Adjust as needed */
+    margin-top: 20px; /* Adjust as needed */
 }
+  
 
 .submit {
     display: flex;
