@@ -11,10 +11,16 @@ function Header() {
         </div>
         <nav className='header__nav'>
           <ul className='header__nav-list'>
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>About</a></li>
-            <li><a href='#'>Services</a></li>
-            <li><a href='#'>Contact</a></li>
+          <li> <Link to='/'>Home </Link></li>
+           
+          <li><Link to='/AboutUs'> About Us</Link></li>
+
+          <li><Link to='/OurServices' >Services</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
+            <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/currency">Currency</Link></li>
+            <li><Link to="/team">Team</Link></li>
+            
           </ul>
         </nav>
         <Link to='/Page-Signup' className='button button--secondary'>Sign Up</Link> {/* Link to the sign-up page */}

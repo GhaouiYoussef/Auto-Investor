@@ -1,45 +1,61 @@
 .header {
   background-color: #f8f9fa;
+  font-family: calibri;
+  padding-right: 15px;
+  padding-left: 15px;
   padding: 20px;
   width: 100%;
-  /* Occupy entire width of the viewport */
+  justify-content: space-between;
 }
 
 .header a {
   text-decoration: none;
   color: #333;
+  text-align: right;
+  font-family: "Montserrat", sans-serif;
 }
 
 .header__inner {
-  display:inline-flex;
+  float: left;
+  display: flex;
   justify-content: space-between;
-  /* Align logo to the left and nav to the right */
   align-items: baseline;
+  /* Align items vertically in the center */
 }
+
 
 .header__logo {
   font-size: 36px;
   font-weight: bold;
-  order:-1;
-  
- 
-  
+  float: left;
+  position: fixed;
+  margin: 10px 15px 15px 10px;
+  left: 0;
+  display: inline;
+
 }
 
 .header__nav {
-  display: flex;
-  align-items: flex-start;
+  margin-left: auto;
+  position: relative;
+  justify-content: space-between;
+
+  right: 0;
+  /* Push nav items to the right */
 }
 
 .header__nav-list {
+  justify-content: space-between;
   list-style: none;
   margin: 0;
   padding: 0;
+  right:0;
   display: flex;
 }
 
 .header__nav-list li {
-  margin-right: 20px;
+
+  margin: 0 12px;
 }
 
 .button {
