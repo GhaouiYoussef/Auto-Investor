@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function Login() {
   const [email,setemail]=useState('')
   const [password,setpassword]=useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (event) => {
     console.log('submit')
@@ -18,9 +19,11 @@ function Login() {
       console.log('user logged in')
       setemail('')
       setpassword('')
+      setError('');
     })
     .catch((error)=>{
       console.log('login failed')
+      setError(error.response.data.error);
     })
   }
   
@@ -30,6 +33,7 @@ function Login() {
       <div className="text">Login</div>
       <div className="underline"></div>
     </div>
+    {error && <p style={{ color: 'red' }}>{error}</p>}
     <form onSubmit={handleSubmit}>
     <div className="inputs">
       <div className="input">

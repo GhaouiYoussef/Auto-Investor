@@ -33,3 +33,24 @@ try {
     res.status(500).send('Internal server error');
 }
 })
+//login 
+app.post('/Login',async (req,res) =>{
+    const {email,password} = req.body
+    try {
+        const query = 'SELECT * FROM users WHERE email = $1 AND password = $2';
+    const result = await pool.query(query, [email, password]);
+
+    if (result.rows.length > 0) {
+        // User exists
+        res.status(200).send('User exists');
+        console.log('User exists');
+    } else {
+        // User does not exist
+        res.status(401).json({ error: 'Invalid email or password' });
+        console.log('User not found');
+    }
+    } catch (error) {
+        console.error('Error inserting user', error);
+        res.status(500).send('Internal server error');
+    }
+    })
