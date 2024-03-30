@@ -1,101 +1,201 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
-import './contact.css'
-// npm i @emailjs/browser
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
+import './contact.css';
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const [disabled, setDisabled] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({
+    display: false,
+    message: '',
+    type: '',
+  });
 
-const Contact = () => {
-  const form = useRef();
+  // Shows alert message for form submission feedback
+  const toggleAlert = (message, type) => {
+    setAlertInfo({ display: true, message, type });
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+    // Hide alert after 5 seconds
+    setTimeout(() => {
+      setAlertInfo({ display: false, message: '', type: '' });
+    }, 5000);
+  };
 
-    emailjs
-      .sendForm(
-        "service_besvrig",
-        "template_3ml8sts",
-        form.current,
-        "-ueCV_b3afpthPDqd"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          console.log("message sent");
-        },
-        (error) => {
-          console.log(error.text);
-        }
+  // Function called on submit that uses emailjs to send email of valid contact form
+  const onSubmit = async (data) => {
+    // Destrcture data object
+    const { name, email, subject, message } = data;
+    try {
+      // Disable form while processing submission
+      setDisabled(true);
+
+      // Define template params
+      const templateParams = {
+        name,
+        email,
+        subject,
+        message,
+      };
+
+      // Use emailjs to email contact form data
+      await emailjs.send(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_PUBLIC_KEY,
       );
+
+      // Display success alert
+      toggleAlert('Form submission was successful!', 'success');
+    } catch (e) {
+      console.error(e);
+      // Display error alert
+      toggleAlert('Uh oh. Something went wrong.', 'danger');
+    } finally {
+      // Re-enable form submission
+      setDisabled(false);
+      // Reset contact form fields after submission
+      reset();
+    }
   };
 
   return (
-    // <StyledContactForm>
-    <div>
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form>
+    <div className='ContactForm'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12 text-center'>
+            <div className='contactForm'>
+              <form
+                id='contact-form'
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+              >
+                {/* Row 1 of form */}
+                <div className='row formRow'>
+                  <div className='col-6'>
+                    <input
+                      type='text'
+                      name='name'
+                      {...register('name', {
+                        required: {
+                          value: true,
+                          message: 'Please enter your name',
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: 'Please use 30 characters or less',
+                        },
+                      })}
+                      className='form-control formInput'
+                      placeholder='Name'
+                    ></input>
+                    {errors.name && (
+                      <span className='errorMessage'>
+                        {errors.name.message}
+                      </span>
+                    )}
+                  </div>
+                  <div className='col-6'>
+                    <input
+                      type='email'
+                      name='email'
+                      {...register('email', {
+                        required: true,
+                        pattern:
+                          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      })}
+                      className='form-control formInput'
+                      placeholder='Email address'
+                    ></input>
+                    {errors.email && (
+                      <span className='errorMessage'>
+                        Please enter a valid email address
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* Row 2 of form */}
+                <div className='row formRow'>
+                  <div className='col'>
+                    <input
+                      type='text'
+                      name='subject'
+                      {...register('subject', {
+                        required: {
+                          value: true,
+                          message: 'Please enter a subject',
+                        },
+                        maxLength: {
+                          value: 75,
+                          message: 'Subject cannot exceed 75 characters',
+                        },
+                      })}
+                      className='form-control formInput'
+                      placeholder='Subject'
+                    ></input>
+                    {errors.subject && (
+                      <span className='errorMessage'>
+                        {errors.subject.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* Row 3 of form */}
+                <div className='row formRow'>
+                  <div className='col'>
+                    <textarea
+                      rows={3}
+                      name='message'
+                      {...register('message', {
+                        required: true,
+                      })}
+                      className='form-control formInput'
+                      placeholder='Message'
+                    ></textarea>
+                    {errors.message && (
+                      <span className='errorMessage'>
+                        Please enter a message
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  className='submit-btn btn btn-primary'
+                  disabled={disabled}
+                  type='submit'
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    // </StyledContactForm>
+      {alertInfo.display && (
+        <div
+          className={`alert alert-${alertInfo.type} alert-dismissible mt-5`}
+          role='alert'
+        >
+          {alertInfo.message}
+          <button
+            type='button'
+            className='btn-close'
+            data-bs-dismiss='alert'
+            aria-label='Close'
+            onClick={() =>
+              setAlertInfo({ display: false, message: '', type: '' })
+            } // Clear the alert when close button is clicked
+          ></button>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Contact;
-
-// Styles
-// const StyledContactForm = styled.div`
-//   width: 400px;
-
-//   form {
-//     display: flex;
-//     align-items: flex-start;
-//     flex-direction: column;
-//     width: 100%;
-//     font-size: 16px;
-
-//     input {
-//       width: 100%;
-//       height: 35px;
-//       padding: 7px;
-//       outline: none;
-//       border-radius: 5px;
-//       border: 1px solid rgb(220, 220, 220);
-
-//       &:focus {
-//         border: 2px solid rgba(0, 206, 158, 1);
-//       }
-//     }
-
-//     textarea {
-//       max-width: 100%;
-//       min-width: 100%;
-//       width: 100%;
-//       max-height: 100px;
-//       min-height: 100px;
-//       padding: 7px;
-//       outline: none;
-//       border-radius: 5px;
-//       border: 1px solid rgb(220, 220, 220);
-
-//       &:focus {
-//         border: 2px solid rgba(0, 206, 158, 1);
-//       }
-//     }
-
-//     label {
-//       margin-top: 1rem;
-//     }
-
-//     input[type="submit"] {
-//       margin-top: 2rem;
-//       cursor: pointer;
-//       background: rgb(249, 105, 14);
-//       color: white;
-//       border: none;
-//     }
-//   }
-// `;
+export default ContactForm;

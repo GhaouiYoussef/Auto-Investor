@@ -1,53 +1,60 @@
-/* ContactForm.css */
-.styled-contact-form {
-    width: 400px;
-  }
-  
-  .styled-contact-form form {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  .styled-contact-form input {
-    width: 100%;
-    height: 35px;
-    padding: 7px;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid rgb(220, 220, 220);
-  }
-  
-  .styled-contact-form input:focus {
-    border: 2px solid rgba(0, 206, 158, 1);
-  }
-  
-  .styled-contact-form textarea {
-    max-width: 100%;
-    min-width: 100%;
-    width: 100%;
-    max-height: 100px;
-    min-height: 100px;
-    padding: 7px;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid rgb(220, 220, 220);
-  }
-  
-  .styled-contact-form textarea:focus {
-    border: 2px solid rgba(0, 206, 158, 1);
-  }
-  
-  .styled-contact-form label {
-    margin-top: 1rem;
-  }
-  
-  .styled-contact-form input[type="submit"] {
-    margin-top: 2rem;
-    cursor: pointer;
-    background: rgb(249, 105, 14);
-    color: white;
-    border: none;
-  }
+.contact-form {
+  width: 80%; /* Adjust width to 80% of the container */
+  max-width: 600px; /* Limit maximum width */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 40px; /* Add padding for spacing */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Add border radius for rounded corners */
+  background-color: #f9f9f9;
+  text-align: center; /* Center align form elements */
+
+}
+
+
+.contact-form label {
+  font-weight: bold;;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 15px; /* Increase padding for input fields */
+  margin: 10px 0 20px 0; /* Add margin for spacing */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Add border radius for rounded corners */
+  box-sizing: border-box;
+}
+
+.contact-form textarea {
+  height: 150px; /* Increase height for textarea */
+}
+
+.contact-form input[type="submit"] {
+  width: 100%; /* Make button full width */
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 0; /* Adjust padding for button */
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px; /* Increase font size for button */
+}
+
+.contact-form input[type="submit"]:hover {
+  background-color: #45a049;
+
+}
+.row {
+  display: fixed;
+  justify-content: center;
+  align-items: center;
+}
+.form-control.formInput{
+  width: 150%;
+  padding: 15px;
+}
+.submit-btn.btn.btn-primary{
+  width: 150%;
+}

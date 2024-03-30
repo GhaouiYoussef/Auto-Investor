@@ -15,7 +15,8 @@ code {
     monospace;
 }
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0 px;;
+  padding-bottom: 20px;
+  align-items: center;
   box-sizing: border-box;
 }
