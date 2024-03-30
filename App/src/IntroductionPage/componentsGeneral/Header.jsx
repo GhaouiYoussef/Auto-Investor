@@ -14,7 +14,7 @@ function Header() {
         </div>
         <nav className='header__nav'>
           {/* humbuger */}
-          <div class="ham" onclick="myFunction(this)">
+          <div class="ham" >
             <div class="bar1"></div>
             <div class="bar2"></div>
             <div class="bar3"></div>
