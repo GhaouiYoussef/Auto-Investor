@@ -10,9 +10,15 @@ function Header() {
         <div className='header__logo'>
         {/* <img src={logoImage} alt="Crypto-APP Logo" onResize={1px,1px} / > */}
 
-        <Link to='/'>Crypto-APP</Link>
+        <Link className='Titre' to='/'>Crypto-APP</Link>
         </div>
         <nav className='header__nav'>
+          {/* humbuger */}
+          <div class="ham" onclick="myFunction(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </div>
           <ul className='header__nav-list'>
           <li> <Link to='/'>Home </Link></li>
            

@@ -43,13 +43,17 @@
 .input {
     display: flex;
     align-items: center;
-    margin: atuo;
+    margin: auto;
     width: 480px;
-    height: 80px;
+    height: 50px;
     background: #eaeaea;
     border-radius: 6px;
-
+    justify-content: center; /* Center the child 
+    horizontally */
+    padding: 0px ;
+    padding-top: 1rem;;
 }
+
 
 .input img {
     margin: 0px 30px;
@@ -112,5 +116,4 @@
 }
 .hh {
 color: #739134;
-color-under: #739134;
 }
