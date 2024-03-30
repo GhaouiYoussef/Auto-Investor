@@ -87,7 +87,7 @@ function Signup() {
               Sign Up
             </button>
   
-            <Link to="/Page-Login">
+            <Link to="/Page-Login" >
               <button
                 className={action === "Sign Up" ? "submit gray" : "submit"}
                 onClick={() => { setAction("Login") }}

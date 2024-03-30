@@ -1,5 +1,5 @@
 .header {
-  background-color: #f8f9fa;
+  background-color: #141726;/*#161827;*/
   font-family: calibri;
   padding-right: 15px;
   padding-left: 15px;
@@ -10,7 +10,7 @@
 
 .header a {
   text-decoration: none;
-  color: #333;
+  color: #d2c1b0;
   text-align: right;
   font-family: "Montserrat", sans-serif;
 }
@@ -24,14 +24,20 @@
 }
 
 
-.header__logo {
-  font-size: 36px;
+.header .header__logo {
+  font-size: 30px;
   font-weight: bold;
   float: left;
-  position: fixed;
-  margin: 10px 15px 15px 10px;
-  left: 0;
+  position: flex-start;
+  margin: 0px 50px 0px 0px;
+  left: 10px;
   display: inline;
+  
+
+}
+.header a:hover {
+  color: #4c5f2e;
+  
 
 }
 
@@ -68,16 +74,20 @@
 
 .button--secondary {
   background-color: transparent;
-  border: 2px solid #007bff;
-  color: #007bff;
+  border: 2px solid #739134
+  ;
+  color: #739134
+  ;
 }
 
-.button--secondary:hover {
-  background-color: #007bff;
+.header .button--secondary:hover {
+  background-color: #739134
+  ;
   color: #fff;
+  
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 768px) {
   .header__logo {
     display: none;
   }

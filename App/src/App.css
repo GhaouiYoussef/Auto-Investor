@@ -62,6 +62,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  background-color: #f5f4f3;
 }
 
 @layer utilities {

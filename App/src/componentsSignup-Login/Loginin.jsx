@@ -62,10 +62,10 @@ function Login() {
       > 
         Login 
       </button>
-
-      <Link to="/Page-Signup">
-        Don't have an account? Sign Up
+      <Link to="/Page-Signup" className='hh'>
+       Don't have an account? Sign Up
       </Link>
+
     </div>
     </div>
     </form>

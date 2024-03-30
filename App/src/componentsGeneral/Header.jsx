@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+// import logoImage from './icon-256x256.png';
 
 function Header() {
   return (
     <header className='header'>
       <div className='header__inner'>
         <div className='header__logo'>
-        <Link to='/'>CryptoPal</Link>
+        {/* <img src={logoImage} alt="Crypto-APP Logo" onResize={1px,1px} / > */}
+
+        <Link to='/'>Crypto-APP</Link>
         </div>
         <nav className='header__nav'>
           <ul className='header__nav-list'>
