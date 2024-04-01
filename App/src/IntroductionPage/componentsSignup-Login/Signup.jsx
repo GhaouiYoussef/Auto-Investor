@@ -34,11 +34,11 @@ function Signup() {
   
   return (
     <div className='container'>
-      <div className='header'>
+      <div className='headerS'>
         <div className="text">{action}</div>
         <div className="underline" />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='formcontainer'>
         <div className="inputs">
           {action === "Login" ? null : (
             <div className="input">

@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './IntroductionPage/App';
 import reportWebVitals from './reportWebVitals';
-
-
+import Dashboard from './PageDashboard/Dashboard';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-    {/* // tzedet <Signup> */}
-    {/* <PageClient /> */}
+
+<App />
+
+<Dashboard />
+
   </React.StrictMode>
 );
 

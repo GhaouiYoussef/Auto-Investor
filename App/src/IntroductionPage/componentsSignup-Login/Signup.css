@@ -3,12 +3,12 @@
     flex-direction: column;
     margin: auto;
     margin-top: 0px;
-    width: 600;
+    width: 100%;
     background: #000000;
     padding-bottom: 30px;
 }
 
-.header {
+.headerS {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     margin: auto;
-    width: 480px;
+    width: 100%;
     height: 50px;
     background: #eaeaea;
     border-radius: 6px;
@@ -54,7 +54,11 @@
     padding-top: 1rem;;
 }
 
-
+.container .formcontainer{
+    width: 50%;
+    align-items: center;
+    /* display: flex; */
+}
 .input img {
     margin: 0px 30px;
 }

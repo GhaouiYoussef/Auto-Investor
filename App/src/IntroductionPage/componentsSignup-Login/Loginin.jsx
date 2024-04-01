@@ -3,9 +3,10 @@ import React,{useState} from 'react';
 import email_icon from './email.png'
 import password_icon from './password.png'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate=useNavigate()
   const [email,setemail]=useState('')
   const [password,setpassword]=useState('')
   const [error, setError] = useState('')
@@ -20,6 +21,8 @@ function Login() {
       setemail('')
       setpassword('')
       setError('');
+      navigate('/Dashboard/PageAcceuilDash')
+
     })
     .catch((error)=>{
       console.log('login failed')
@@ -29,7 +32,7 @@ function Login() {
   
   return (
     <div className='container'>
-    <div className='header'>
+    <div className='headerS'>
       <div className="text">Login</div>
       <div className="underline"></div>
     </div>

@@ -1,37 +1,54 @@
-.header {
-  background-color: #141726;/*#161827;*/
-  font-family: calibri;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding: 20px;
+/* background-color: #141726;
+font-family: calibri;
+padding-right: 15px;
+padding-left: 15px; */
+/* padding: 20px; */
+/* width: 100%;
+justify-content: space-between;
+margin-top: 0px; */
+
+.header{
+  background-color: #141726;
+  display: flex;
+  align-items: center;
+  gap: 2%;
   width: 100%;
-  justify-content: space-between;
 }
+
 
 .header a {
   text-decoration: none;
   color: #d2c1b0;
-  text-align: right;
+  text-align: center;
   font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
 }
 
 .header__inner {
   float: left;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  width: 100%;
   /* Align items vertically in the center */
 }
+.header__nav .header__nav-listWest {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding-left: 0%;
 
+}
 
 .header .header__logo {
   font-size: 30px;
   font-weight: bold;
   float: left;
   position: flex-start;
-  margin: 0px 50px 0px 0px;
+  margin: 0px 0px 0px 0px;
   left: 10px;
   display: inline;
+  align-items: center;
   
 
 }
@@ -42,7 +59,7 @@
 }
 
 .header__nav {
-  margin-left: auto;
+  /* margin-left: auto; */
   position: relative;
   justify-content: space-between;
 
@@ -64,10 +81,10 @@
   margin: 0 12px;
 }
 
-.button {
-  padding: 10px 20px;
+.sgnp .button {
+  padding: 10px 5px;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 1rem;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
@@ -78,16 +95,21 @@
   ;
   color: #739134
   ;
+  /* align-self: flex-end; */
 }
-
+.sgnp{
+  margin-left: 10px;
+}
 .header .button--secondary:hover {
   background-color: #739134
   ;
   color: #fff;
+  padding-bottom: 10px;
+
   
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 425px) {
   .header__logo {
     display: none;
   }
@@ -95,6 +117,11 @@
     display: none;
   }
   .header__nav-list {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px){
+  .bar1, .bar2, .bar3{
     display: none;
   }
 }
@@ -111,4 +138,14 @@
   background-color: #333;
   margin: 6px 0;
   transition: 0.4s;
+}
+
+Header .Titre{
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: #d2c1b0;
+  margin: 0px 0px 0px 0px;
+  left: 10px;
+  display: inline;
 }
