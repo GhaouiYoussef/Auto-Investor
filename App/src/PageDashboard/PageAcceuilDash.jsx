@@ -13,7 +13,7 @@ const PageAcceuilDash = () => {
     return (
       <div >
         {/* <Navbar /> */}
-        <div className="container">
+        <div className="containerP">
           <div className="menuContainer">
             <Menu />
           </div>
