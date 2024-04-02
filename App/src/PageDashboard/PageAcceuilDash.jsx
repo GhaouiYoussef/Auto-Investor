@@ -11,8 +11,8 @@ import Logout from './logout/Logout';
 const PageAcceuilDash = () => {
   // const Layout = () => {
     return (
-      <div className="main">
-        <Navbar />
+      <div >
+        {/* <Navbar /> */}
         <div className="container">
           <div className="menuContainer">
             <Menu />
