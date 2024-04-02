@@ -19,7 +19,7 @@ function Header2() {
             <div class="bar2"></div>
             <div class="bar3"></div>
           </div>
-          <ul className='header__nav-list'>
+          <ul id="navList" className='header__nav-list'>
           <ul className='header__nav-listWest'>
 
           <li> <Link to='/'>Profile </Link></li>
