@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="hero">
-      <div className="container">
+      <div className="container1">
         <div className="hero__inner">
           <h1 className="hero__title">
             Invest in crypto assets <br /> the easy way
@@ -27,5 +27,8 @@ const Hero = () => {
     </section>
   );
 };
+
+
+
 
 export default Hero;

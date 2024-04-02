@@ -16,6 +16,7 @@ import Header2 from './componentsGeneral/Header2';
 import './App.css';
 
 const App = () => {
+  
   return (
     <Router> {/* Wrap the entire app with Router */}
       <div>
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/currency" element={<Currency />} />
           <Route path="/team" element={<OurTeam />} />
+          <Route path="/dashboard" component={<Dashboard/>} />       
         </Routes>
       </div>
     </Router>

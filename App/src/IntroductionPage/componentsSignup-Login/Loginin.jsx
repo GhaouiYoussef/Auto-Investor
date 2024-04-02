@@ -31,7 +31,7 @@ function Login() {
   }
   
   return (
-    <div className='container'>
+    <div className='container6'>
     <div className='headerS'>
       <div className="text">Login</div>
       <div className="underline"></div>

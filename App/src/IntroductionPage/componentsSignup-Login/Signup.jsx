@@ -33,7 +33,7 @@ function Signup() {
   }
   
   return (
-    <div className='container'>
+    <div className='container1'>
       <div className='headerS'>
         <div className="text">{action}</div>
         <div className="underline" />
