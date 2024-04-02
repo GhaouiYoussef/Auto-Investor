@@ -96,6 +96,7 @@
     /* justify-content: center; Optional: Adjust as needed */
     align-items: center; /* Optional: Adjust as needed */
     gap: 10px; /* Optional: Adjust as needed */
+    background-color: #121d00;
     margin-top: 20px; /* Adjust as needed */
 }
   
