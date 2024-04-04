@@ -3,6 +3,7 @@ const cors = require('cors')
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt')
 const crypto = require('crypto');
+const jwt=require('jsonwebtoken')
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
 
 
@@ -42,6 +43,9 @@ try {
     res.status(500).send('Internal server error');
 }
 })
+function createtoken(req,res,next){
+   const user=req.body.email
+}
 //login 
 app.post('/Login',async (req,res) =>{
     const {email,password} = req.body

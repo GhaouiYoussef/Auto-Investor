@@ -26,7 +26,7 @@
     "react-hook-form": "^7.51.2",
     "react-router-dom": "^6.22.3",
     "react-scripts": "^5.0.1",
-    "sass": "^1.72.0",
+    "sass": "^1.74.1",
     "scss": "^0.2.4",
     "style-loader": "^3.3.4",
     "styled-components": "^6.1.8",
