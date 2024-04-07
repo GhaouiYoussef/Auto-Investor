@@ -10,7 +10,8 @@ function Login() {
   const [email,setemail]=useState('')
   const [password,setpassword]=useState('')
   const [error, setError] = useState('')
-
+ 
+  axios.defaults.withCredentials = true;
   const handleSubmit = (event) => {
     console.log('submit')
     event.preventDefault();
