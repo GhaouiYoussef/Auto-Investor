@@ -22,7 +22,8 @@ function Login() {
       setemail('')
       setpassword('')
       setError('');
-      navigate('/Dashboard/PageAcceuilDash')
+      window.location.href = '/Dashboard/PageAcceuilDash';
+      // navigate('/Dashboard/PageAcceuilDash')
 
     })
     .catch((error)=>{
