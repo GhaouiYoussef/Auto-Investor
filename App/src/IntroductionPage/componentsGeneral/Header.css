@@ -57,7 +57,12 @@ margin-top: 0px; */
   
 
 }
-
+.header-section.clearfix {
+  background-color: #141726;
+}
+.header-section{
+  position: relative;
+}
 .header__nav {
   /* margin-left: auto; */
   position: relative;

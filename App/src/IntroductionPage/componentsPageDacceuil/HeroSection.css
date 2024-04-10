@@ -1,0 +1,20 @@
+.hero-section {
+    width: 100%;
+    height: auto;
+    padding: 10%;
+    background-color: black;
+    background-image: url("./img/hero-bg.png");
+    background-size: cover;
+}
+
+.hero-section .row{
+    margin: 0%;
+    width: 100%;
+}
+.hero-section .container{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    background-color: transparent;
+
+}
