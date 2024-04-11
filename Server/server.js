@@ -3,8 +3,11 @@ const cors = require('cors')
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt')
 const crypto = require('crypto');
+const coockieParser= require('cookie-parser')
+const jwt=require('jsonwebtoken')
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
 
+require('dotenv').config();
 
 
 const app = express()
@@ -20,9 +23,19 @@ const pool = new Pool({
     port: 5432, 
 });
 // middleware
+app.use(coockieParser());
+app.use(express.json());
+app.use(cors(
+     {
 
-app.use(express.json())
-app.use(cors())
+        origin:["http://localhost:3000"],
+        methods: ["POST, GET"],
+        credentials: true
+     }
+   
+
+
+));
 
 //routers
 app.post('/Create',async (req,res) =>{
@@ -44,6 +57,7 @@ try {
 })
 //login 
 app.post('/Login',async (req,res) =>{
+    
     const {email,password} = req.body
     try {
         const query = 'SELECT * FROM users WHERE email = $1';
@@ -51,11 +65,15 @@ app.post('/Login',async (req,res) =>{
 
         if (result.rows.length > 0) {
             const user = result.rows[0];
+            const name= user.name;
             const isPasswordMatch = await bcrypt.compare(password, user.password);
             if (isPasswordMatch) {
-                // Passwords match
+                 //Passwords match
+                const token = jwt.sign({name},'696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '1d' });
+                res.cookie('token',token);
                 res.status(200).send('User logged in successfully');
                 console.log('User logged in successfully');
+
             } else {
                 // Passwords do not match
                 res.status(401).json({ error: 'Invalid email or password' });
@@ -71,7 +89,7 @@ app.post('/Login',async (req,res) =>{
         res.status(500).send('Internal server error');
     }
     })
-    app.get('/verify', async (req, res) => {
+app.get('/verify', async (req, res) => {
         const { token } = req.query; // Extract the verification token from the URL query parameters
         try {
             // Retrieve the user from the database based on the verification token
@@ -101,5 +119,9 @@ app.post('/Login',async (req,res) =>{
             res.status(500).send('Internal server error');
         }
     });
-
+app.get("/logout", (req, res) => {
+        res.clearCookie("token");
+        return res.json({ status: "200"});
+      });
+      
     

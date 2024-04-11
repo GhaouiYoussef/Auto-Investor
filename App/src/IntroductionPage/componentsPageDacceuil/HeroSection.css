@@ -1,0 +1,52 @@
+.hero-section {
+    width: 100%;
+    height: auto;
+    padding: 10%;
+    background-color: black;
+    background-image: url("./img/hero-bg.png");
+    background-size: cover;
+}
+
+.hero-section .row{
+    margin: 0%;
+    width: 100%;
+}
+.hero-section .container{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    background-color: transparent;
+
+}
+
+  
+@media screen and (max-width: 425px) and (min-width: 321px){
+    .col-md-6.hero-text .ahh {
+        justify-content: center;
+        width: 100%; /* Adjust as needed */
+      }
+      .col-md-6.hero-text .site-btn{
+            min-width: 50%;
+            padding: 7% 7%;
+        }
+        .sb-gradients {
+            width: 50%;
+            padding: 0%;
+        }
+    
+}
+
+@media screen and (max-width: 321px){
+    .col-md-6.hero-text .ahh {
+        justify-content: center;
+        width: 100%; /* Adjust as needed */
+      }
+      
+    .col-md-6.hero-text .site-btn{
+          min-width: 50%;
+          padding: 7% 7%;
+      }
+
+
+  
+}

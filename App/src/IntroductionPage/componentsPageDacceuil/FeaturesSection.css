@@ -1,0 +1,16 @@
+.container.text-center .roww {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-container .ah {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5%;
+}

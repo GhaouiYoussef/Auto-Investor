@@ -5,8 +5,9 @@ import email_icon from './email.png'
 import password_icon from './password.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-
-
+import wp from './wpp.svg'
+import Section from './Section';
+import Form from './Form';
 
 function Signup() {
   const [users,setusers]=useState([])
@@ -33,13 +34,17 @@ function Signup() {
   }
   
   return (
-    <div className='container'>
-      <div className='headerS'>
-        <div className="text">{action}</div>
-        <div className="underline" />
-      </div>
+<div className='container1' >
+  {/* <Section />
+  <Form /> */}
+
+      <div className='contentSig'>
+        <div className='Westani' >
+
       <form onSubmit={handleSubmit} className='formcontainer'>
         <div className="inputs">
+        <h3 className='text'><u>{action}</u></h3>
+
           {action === "Login" ? null : (
             <div className="input">
               <img src={user_icon} alt="User Icon" />
@@ -72,13 +77,10 @@ function Signup() {
           </div>
         </div>
         
-        {action === "Sign Up" ? null : (
-          <div className="forgot-password">
-            Lost Password ?<span> Click Here!</span>
-          </div>
-        )}
-        
-        <div className="main">
+        <div >
+        <div className="forgot-password">
+                            Already have an account? <Link to="/Page-Login" ><span>Log in</span></Link>
+                        </div>
           <div className="submit-container">
             <button
               className={action === "Login" ? "submit gray" : "submit"}
@@ -86,80 +88,17 @@ function Signup() {
             >
               Sign Up
             </button>
-  
-            <Link to="/Page-Login" >
-              <button
-                className={action === "Sign Up" ? "submit gray" : "submit"}
-                onClick={() => { setAction("Login") }}
-              > 
-                Login 
-              </button>
-            </Link>
+
           </div>
+          
         </div>
+        
       </form>
+      </div>
+      </div>
+      <img src={wp} alt="wp" className="imageclass" />
     </div>
   );
         }
   export default Signup;
 
-//   return (
-//     <div className='container'>
-//     <div className='header'>
-//       <div className="text">{action}</div>
-//       <div className="underline"></div>
-//     </div>
-//     <form onSubmit={handleSubmit}>
-//     <div className="inputs">
-//       {action=="Login"?<div></div>:<div className="input">
-//         <img src={user_icon} alt="" />
-//         <input type="text" placeholder="Name"    
-//         value={name}
-//         onChange={(e)=>setname(e.target.value)}
-//         />
-//         <input type="text" />
-//       </div>}
-      
-//       <div className="input">
-//         <img src= {email_icon} alt="" />
-//         <input type="Email" placeholder='Email ID' 
-//         value={email}
-//         onChange={(e)=> setemail(e.target.value)}
-//         />
-//       </div>
-//       <div className="input">
-//         <img src={password_icon} alt="" />
-//         <input type="password" placeholder="Password" 
-//         value={password}
-//         onChange={(e)=> setpassword(e.target.value)}
-//         />
-//         <input type="Password" />
-//       </div>
-//     </div>
-    
-//     {action=="Sign Up"?<div></div>:<div className="forgot-password" >Lost Password ?<span> Click Here!</span></div>}
-    
-//     <div className="main">
-//     <div className="submit-container">
-//   <button
-//     className={action === "Login" ? "submit gray" : "submit"}
-//     onClick={() => { setAction("Sign Up") }} >Sign Up</button>
-
-// <Link to="/Page-Login">
-//   <button
-//     className={action === "Sign Up" ? "submit gray" : "submit"}
-//     onClick={() => { setAction("Login") }} 
-//   > 
-//     Login 
-//   </button>
-// </Link>
-
-
-// </div>
-// </div>
-// </form>
-// </div>
-//   );
-// }
-
-// export default Signup;
