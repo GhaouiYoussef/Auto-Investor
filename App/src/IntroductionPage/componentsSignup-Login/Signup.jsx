@@ -6,8 +6,6 @@ import password_icon from './password.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import wp from './wpp.svg'
-import Section from './Section';
-import Form from './Form';
 
 function Signup() {
   const [users,setusers]=useState([])

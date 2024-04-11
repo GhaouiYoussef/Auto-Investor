@@ -10,7 +10,6 @@ import FAQ from './Com_faq/faq';
 import Currency from './Com_currency/currency';
 import OurTeam from './Com_team/Team';
 import Login from './componentsSignup-Login/Loginin';
-import Hero from './componentsPageDacceuil/Hero';
 import Dashboard from '../PageDashboard/Dashboard';
 import Header2 from './componentsGeneral/Header2';
 import './App.css';
