@@ -1,0 +1,15 @@
+.team-section{
+    background-image: url('low-poly-grid-haikei.svg');
+}
+.containerT{
+    align-items: center;
+}
+.team-members.clearfix{
+    align-items: center;
+    margin: 0px 20% 0px 20%;
+    display: flex;
+    justify-content: center;
+}
+.member{
+    margin: 5%;
+}
