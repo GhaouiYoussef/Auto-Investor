@@ -1,0 +1,66 @@
+/* Process.css */
+
+.process-section {
+    padding: 40px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .process-step {
+    text-align: center;
+  }
+  
+  .process-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .process-icon img {
+    width: 60px; /* Adjust the size of the image as needed */
+    height: auto;
+  }
+  
+  .process-step h4 {
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .process-step p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .col-md-4 {
+    flex: 1 1 30%; /* Adjust flex properties as needed */
+    box-sizing: border-box;
+    padding: 10px;
+  }
+/* Process.css */
+
+.process-step {
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    padding: 20px; /* Optional: Add padding for space around content */
+    margin: 10px; /* Optional: Add margin for space between steps */
+}
+  

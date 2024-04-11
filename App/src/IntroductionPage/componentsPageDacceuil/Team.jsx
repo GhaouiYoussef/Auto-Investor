@@ -1,13 +1,13 @@
 import React from 'react';
 import './Team.css';
-
+import yg from './img/yg.jpg';
 const Team = () => {
   // Function to render each team member
   const renderMember = (member) => {
     return (
       <div className="member" key={member.name}>
         <div className="member-text">
-          <div className="member-img set-bg" style={{ backgroundImage: `url(${member.image})` }}></div>
+          <img className="member-img set-bg" src={member.image}></img>
           <h2>{member.name}</h2>
           <span>{member.title}</span>
         </div>
@@ -33,7 +33,7 @@ const Team = () => {
     {
       name: 'Youssef GHAOUI',
       title: 'AI Engineer and Project Manager',
-      image: 'C:\YoussefENSI_backup\Auto-Investor\trial\Auto-Investor\App\src\IntroductionPage\componentsPageDacceuil\yg.jpg',
+      image: yg,
       socialMedia: [
         { platform: 'facebook', url: 'https://www.facebook.com/' },
         { platform: 'linkedin', url: 'https://www.linkedin.com/' },

@@ -1,15 +1,28 @@
 .team-section{
-    background-image: url('low-poly-grid-haikei.svg');
+    background-image: url('./img/low-poly-grid-haikei.svg');
 }
 .containerT{
     align-items: center;
 }
 .team-members.clearfix{
     align-items: center;
-    margin: 0px 20% 0px 20%;
+    /* margin: 0px 20% 0px 20%; */
     display: flex;
     justify-content: center;
 }
-.member{
-    margin: 5%;
+.member {
+    background: #fff;
+    width: calc(20% - 25px);
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+    padding: 50px 10px;
+    -webkit-box-shadow: 1px 1px 1px rgba(33, 54, 61, 0.15);
+    box-shadow: 1px 1px 1px rgba(33, 54, 61, 0.15);
+    border-radius: 10px;
+    position: relative;
+    margin: 1%;
+}
+.member-img{
+    object-fit: cover;
 }

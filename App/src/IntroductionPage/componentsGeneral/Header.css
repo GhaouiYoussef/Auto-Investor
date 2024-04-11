@@ -156,3 +156,6 @@ Header .Titre{
   left: 10px;
   display: inline;
 }
+.menu-list li{
+  color: #fff;
+}
