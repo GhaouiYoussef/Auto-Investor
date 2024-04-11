@@ -10,10 +10,8 @@ import Menu from './menu/Menu';
 import Logout from './logout/Logout';
 import axios from "axios";
 
-
 const PageAcceuilDash = () => {
   axios.defaults.withCredentials = true;// to force credentials to every Axios requests
-  const navigate = useNavigate();
 const handleLogout = () => {
   
   axios
@@ -37,47 +35,11 @@ const handleLogout = () => {
           <div className="menuContainer">
             <Menu />
           </div>
-          <div className="contentContainer">
-          <button onClick={handleLogout}>Logout</button>
-            <Outlet />
-          </div>
+
         </div>
-        <div className='input'>
-        <button onClick={handleLogout}>Logout</button>
-        </div>
+
         <Footer />
       </div>
     );
-  
-
-  // };
-
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/Dashboard",
-  //     element: <Layout />,
-  //     children: [
-  //       {
-  //         path: "PageAcceuilDash",
-  //         element: <PageAcceuilDash />
-  //       },
-  //       {
-  //         path: "profile",
-  //         element: <Profile />
-  //       },
-  //       {
-  //         path: "packages",
-  //         element: <Packages />
-  //       },
-
-  //     ]
-  //   },
-  //   {
-  //     path: "/Dashboard/logout",
-  //     element: <Logout />
-  //   }
-  // ]);
-
-  // return <RouterProvider router={router} />;
-};
+}
 export default PageAcceuilDash

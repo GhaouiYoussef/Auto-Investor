@@ -61,7 +61,7 @@ margin-top: 0px; */
   background-color: #141726;
 }
 .header-section{
-  position: relative;
+  position: sticky;
 }
 .header__nav {
   /* margin-left: auto; */
@@ -144,7 +144,9 @@ margin-top: 0px; */
   margin: 6px 0;
   transition: 0.4s;
 }
-
+.site-btn{
+  margin-bottom: 1%;
+}
 Header .Titre{
   font-size: 1rem;
   font-weight: bold;

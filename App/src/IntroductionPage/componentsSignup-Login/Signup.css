@@ -1,35 +1,72 @@
-.container {
+.container1 {
     display: flex;
-    flex-direction: column;
+    /* justify-content: space-between; */
+    /* flex-direction: column; */
     margin: auto;
     margin-top: 0px;
     width: 100%;
+    height: 100vh;
     background: #000000;
-    padding-bottom: 30px;
+
+    /* padding-bottom: 30px; */
+    /* align-items: center; */
+
+
+}
+.container1 .contentSig{
+    flex: 1;
+    width: 0%;
+    height: 100vh;
+
 }
 
-.headerS {
+.contentSig .Westani {
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    /* margin: 0% 20% 20% 20%; Adjusts the margin */
+    flex-direction: row;
+}
+.contentSig .text {
+    text-align: center; /* Center the h3 text */
+    margin-top: 10%; /* Add space between h3 and the form content */
+    /* You can add other styles as needed */
+    font-size: 200%;
+    margin-bottom: 10%;
+}
+
+.container1 .imageclass{
+    height: 100vh;
+    width: 40%;
+    object-fit: cover; /* This ensures the image is cropped to fit the container */
+
+}
+
+   
+
+
+
+
+
+
+.hero-sectionp{
+    background-image: none;
+}
+.container .col-md-6.hero-text{
     align-items: center;
-    gap: 9px;
-    width: 100%;
-    margin-top: 30px;
+    justify-content: center;
 }
 
-.text {
-    color: #739134;
-    font-size: 48px;
-    font-weight: 700;
-}
 
-.underline {
+
+
+/* .underline {
     width: 140px;
     height: 6px;
-    background: #739134;
+    background: #007bff;
     border-radius: 6px;
 
-}
+} */
 
 .inputs {
     margin-top: 55px;
@@ -44,28 +81,27 @@
     display: flex;
     align-items: center;
     margin: auto;
-    width: 50%;
-    height: 50px;
+    width: 70%;
     background: #eaeaea;
     border-radius: 6px;
     justify-content: center; /* Center the child 
     horizontally */
     padding: 0px ;
-    padding-top: 1rem;;
 }
 
-.container .formcontainer{
-    width: 50%;
+.container1 .formcontainer{
+    width: 40%;
     align-items: center;
+    height: 10%;
     /* display: flex; */
 }
 .input img {
-    margin: 0px 30px;
+    margin: 10% 10%;
+    padding-top: 0%;
 }
 
 .input input {
-    height: 50px;
-    width: 400px;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -77,16 +113,16 @@
     padding-left: 6px;
     margin-top: 27px;
     color: #797979;
-    font-size: 19px;
+    font-size: 1rem;
     text-align: center;
 }
 
 .forgot-password span {
-    color: #4c5f2e;
+    color: #0f2b58;
     cursor: pointer;
 }
 .forgot-password span:hover {
-    color: #81a336;
+    color: #20509e;
     /* cursor: pointer; */
 }
 
@@ -96,7 +132,7 @@
     /* justify-content: center; Optional: Adjust as needed */
     align-items: center; /* Optional: Adjust as needed */
     gap: 10px; /* Optional: Adjust as needed */
-    background-color: #121d00;
+    background-color: transparent;
     margin-top: 20px; /* Adjust as needed */
 }
   
@@ -105,12 +141,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220px;
+    width: 40%;
     height: 59px;
     color: #fff;
-    background: #4c5f2e;
+    background: #20509e;
     border-radius: 50px;
-    font-size: 19px;
+    border-width: 0px;
+    font-size: 100%;
     font-weight: 700;
     cursor: pointer;
 }
@@ -118,7 +155,18 @@
 .gray {
     background: #eaeaea;
     color: #676767;
+
 }
 .hh {
-color: #739134;
+color: #20509e;
+}
+
+@media screen and (max-width: 425px){
+    .imageclass{
+        display: none;
+    }   
+    .input {
+        width: 100%;
+        height: 50px;
+    }
 }

@@ -5,7 +5,7 @@ function FeaturesSection() {
   return (
     <section className="features-section spad">\
           <div className="center-container">
-  <h2>Our Features</h2>
+  <h2 className='ah'>Our Features</h2>
 </div>   
       <div className="container text-center">
 

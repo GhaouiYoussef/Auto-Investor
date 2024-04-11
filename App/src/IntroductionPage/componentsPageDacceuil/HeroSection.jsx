@@ -10,7 +10,7 @@ function HeroSection() {
             <h2>Invest in <span>Bitcoin</span> <br />Bitcoin Trading</h2>
             <h4>Use modern progressive technologies of Bitcoin to earn money</h4>
             <form className="hero-subscribe-from">
-              <input type="text" placeholder="Enter your email" />
+            <input  className='ahh' type="text" placeholder="Enter your email" />
               <button className="site-btn sb-gradients">Get Started</button>
             </form>
           </div>
