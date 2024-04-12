@@ -1,13 +1,4 @@
-import './styles/global.scss'
 import React from 'react';
-import { Link, Route, Outlet, createBrowserRouter, RouterProvider} from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import Profile from './Profile';
-import Packages from "./Packages";
-import Navbar from './navbar/Navbar';
-import Footer from './footer/Footer';
-import Menu from './menu/Menu';
-import Logout from './logout/Logout';
 import axios from "axios";
 
 const PageAcceuilDash = () => {
@@ -30,15 +21,11 @@ const handleLogout = () => {
   // const Layout = () => {
     return (
       <div >
-        {/* <Navbar /> */}
         <div className="containerP">
           <div className="menuContainer">
-            <Menu />
           </div>
-
         </div>
 
-        <Footer />
       </div>
     );
 }
