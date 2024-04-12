@@ -7,9 +7,10 @@ function AboutSection() {
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-6 about-text">
-            <h2>What is Bitcoin</h2>
-            <h5>Bitcoin is an innovative payment network and a new kind of money.</h5>
-            <p>Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
+          <h2>What is Cypstor</h2>
+<h5>Cypstor is your trusted gateway to automated and effortless cryptocurrency investing.</h5>
+<p>Cypstor revolutionizes the way you invest in the crypto world. By harnessing advanced algorithms and automation, Cypstor streamlines the investment process, making it easy and efficient for you to grow your digital assets. Whether you're a seasoned investor or new to the crypto scene, Cypstor's user-friendly platform empowers you to make smart investment decisions and navigate the dynamic market with confidence.</p>
+
             <a href="" className="site-btn sb-gradients sbg-line mt-5">Get Started</a>
           </div>
         </div>

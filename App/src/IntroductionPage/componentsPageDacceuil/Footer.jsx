@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './img/logo.png';
-
+import './Footer.css';
 function Footer() {
   return (
-    <footer className="footer-section">
+    <footer className="footer-sectionf">
       <div className="container">
         <div className="row spad">
           <div className="col-md-6 col-lg-3 footer-widget">

@@ -14,3 +14,18 @@
   align-items: center;
   padding-bottom: 5%;
 }
+.containerf {
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  display: fixed;
+  color: #004a75;
+}
+
+.containerf h4{
+  color: white;
+}
+.features-section.spad.gradient-bgp{
+  background: none;
+  background-color: #09101a;
+}
