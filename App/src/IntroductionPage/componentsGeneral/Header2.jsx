@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import Profile from '../../PageDashboard/Profile';
 import logoImage from './perfectlogo-transparent.png';
+
 
 function Header2() {
   return (
@@ -22,10 +24,10 @@ function Header2() {
           <ul id="navList" className='header__nav-list'>
           <ul className='header__nav-listWest'>
 
-          <li> <Link to='/'>Profile </Link></li>
-          <li><Link to='/OurServices' >Home</Link></li>
-          <li><Link to="/contact">Offers</Link></li>
-        <li><Link to="/currency">Currency</Link></li>
+          <li> <Link to='dashboard/Profile'>Profile </Link></li>
+          <li><Link to='/dashboard/PageAcceuilDash' >Home</Link></li>
+          <li><Link to="/dashboard/packages">packages</Link></li>
+        <li><Link to="/">Currency</Link></li>
 
             
           </ul>

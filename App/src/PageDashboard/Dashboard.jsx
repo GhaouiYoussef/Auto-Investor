@@ -9,9 +9,7 @@ const Dashboard = () => {
     <Router>
       <div>
       <Routes>
-        <Route path="/Dashboard/PageAcceuilDash" element={<PageAcceuilDash />} />
-        <Route path="/Dashboard/Profile" element={<Profile />} />
-        <Route path="/Dashboard/Packages" element={<Packages />} />
+        
       </Routes>
 
       </div>

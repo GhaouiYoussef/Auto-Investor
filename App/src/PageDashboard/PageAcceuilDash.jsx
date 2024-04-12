@@ -1,83 +1,29 @@
-import './styles/global.scss'
-import React from 'react';
-import { Link, Route, Outlet, createBrowserRouter, RouterProvider} from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import Profile from './Profile';
-import Packages from "./Packages";
-import Navbar from './navbar/Navbar';
-import Footer from './footer/Footer';
-import Menu from './menu/Menu';
-import Logout from './logout/Logout';
-import axios from "axios";
-
+import Sidebar from "./Sidebar/Sidebar";
+import './PageAccueilDash.scss';
+import Widget from "./widget/Widget";
+import Featured from './featured/Featured';
+import Chart from './chart/Chart';
 
 const PageAcceuilDash = () => {
-  axios.defaults.withCredentials = true;// to force credentials to every Axios requests
-  const navigate = useNavigate();
-const handleLogout = () => {
-  
-  axios
-    .get("http://localhost:3001/logout")
-    .then((res) => {
-      if (res.data.status === "200") {
-        window.location.href = '/';
-      } else {
-        alert("error");
-      }
-    })
-    .catch((err) => console.log(err));
-};
+  return (
+    <div className="PageAcceuilDash">
+      <Sidebar />
+      <div className="homeContainer">
+      <div className="widgets">
+        <Widget type ='CryptoTrends' />
+        <Widget type ="balance"/>
+        <Widget type="autoInvestTransactions"/>
 
-//const PageAcceuilDash = () => {
-  // const Layout = () => {
-    return (
-      <div >
-        {/* <Navbar /> */}
-        <div className="containerP">
-          <div className="menuContainer">
-            <Menu />
-          </div>
-          <div className="contentContainer">
-          <button onClick={handleLogout}>Logout</button>
-            <Outlet />
-          </div>
-        </div>
-        <div className='input'>
-        <button onClick={handleLogout}>Logout</button>
-        </div>
-        <Footer />
       </div>
-    );
-  
+      <div className="charts">
+        <Featured/>
+        <Chart/>
+      </div>
+      
+      </div>
+      
+    </div>
+  )
+}
 
-  // };
-
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/Dashboard",
-  //     element: <Layout />,
-  //     children: [
-  //       {
-  //         path: "PageAcceuilDash",
-  //         element: <PageAcceuilDash />
-  //       },
-  //       {
-  //         path: "profile",
-  //         element: <Profile />
-  //       },
-  //       {
-  //         path: "packages",
-  //         element: <Packages />
-  //       },
-
-  //     ]
-  //   },
-  //   {
-  //     path: "/Dashboard/logout",
-  //     element: <Logout />
-  //   }
-  // ]);
-
-  // return <RouterProvider router={router} />;
-};
-export default PageAcceuilDash
+export default PageAcceuilDash;
