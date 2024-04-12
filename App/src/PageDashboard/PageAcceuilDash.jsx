@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from "axios";
 
+import Sidebar from "./Sidebar/Sidebar";
+import Widget from "./widget/Widget";
+import Featured from './featured/Featured';
+import Chart from './chart/Chart';
 const PageAcceuilDash = () => {
   axios.defaults.withCredentials = true;// to force credentials to every Axios requests
 const handleLogout = () => {
@@ -17,16 +21,25 @@ const handleLogout = () => {
     .catch((err) => console.log(err));
 };
 
-//const PageAcceuilDash = () => {
-  // const Layout = () => {
-    return (
-      <div >
-        <div className="containerP">
-          <div className="menuContainer">
-          </div>
-        </div>
+  return (
+    <div className="PageAcceuilDash">
+      <Sidebar />
+      <div className="homeContainer">
+      <div className="widgets">
+        <Widget type ='CryptoTrends' />
+        <Widget type ="balance"/>
+        <Widget type="autoInvestTransactions"/>
 
       </div>
-    );
+      <div className="charts">
+        <Featured/>
+        <Chart/>
+      </div>
+      
+      </div>
+      
+    </div>
+  )
 }
-export default PageAcceuilDash
+
+export default PageAcceuilDash;
