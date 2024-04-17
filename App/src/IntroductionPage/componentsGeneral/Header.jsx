@@ -2,16 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import logoImage from './perfectlogo-transparent.png';
-import logo from './logo.png';
+import logo from './logoooo.png';
 import './Header.css';
+import  { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
+  // Initialize state to track whether the header should be sticky
+  const [isSticky, setIsSticky] = useState(true);
+
+  // Get the current URL path using useLocation hook
+  const location = useLocation();
+
+  // Define a useEffect to conditionally apply the sticky class based on the current path
+  useEffect(() => {
+    // Check if the current path is not /Signup or /Login
+    if (location.pathname === '/Signup' || location.pathname === '/Login') {
+      setIsSticky(false); // Do not apply sticky class
+    } else {
+      setIsSticky(true); // Apply sticky class
+    }
+  }, [location.pathname]); // Re-run the effect when the location changes
+
+  // Define the className for the header based on the state of isSticky
+  const headerClassName = isSticky ? 'header-section clearfix sticky' : 'header-section clearfix';
+
   return (
-    <header className="header-section clearfix">
+    <header className={headerClassName}>
       <div className="container-fluid">
         {/* Site logo */}
-        <a href="index.html" className="site-logo">
-          <img src={logo} alt="Logo" />
+        <a href="" className="site-logo">
+          <img src={logo} className='rr' alt="Logo" />
         </a>
         
         {/* Responsive bar */}

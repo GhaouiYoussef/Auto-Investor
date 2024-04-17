@@ -18,6 +18,7 @@ margin-top: 0px; */
 }
 
 
+
 .header a {
   text-decoration: none;
   color: #d2c1b0;
@@ -115,6 +116,11 @@ margin-top: 0px; */
   padding-bottom: 10px;
 
   
+}
+.rr{
+  width: 190px;
+  height: 56px;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 425px) {

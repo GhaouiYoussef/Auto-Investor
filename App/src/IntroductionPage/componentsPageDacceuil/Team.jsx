@@ -1,10 +1,12 @@
 import React from 'react';
 import './Team.css';
 import yg from './img/yg.jpg';
+import kt from './img/khalil.jpg';
 const Team = () => {
   // Function to render each team member
   const renderMember = (member) => {
     return (
+      
       <div className="member" key={member.name}>
         <div className="member-text">
           <img className="member-img set-bg" src={member.image}></img>
@@ -55,7 +57,7 @@ const Team = () => {
     {
       name: 'Khalil',
       title: 'Product Manager',
-      image: 'img/member/3.jpg',
+      image: kt,
       socialMedia: [
         { platform: 'facebook', url: 'https://www.facebook.com/' },
         { platform: 'linkedin', url: 'https://www.linkedin.com/' },

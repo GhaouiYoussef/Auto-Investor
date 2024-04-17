@@ -29,3 +29,15 @@
   background: none;
   background-color: #09101a;
 }
+.containerf .row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.containerp .row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
