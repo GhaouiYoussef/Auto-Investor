@@ -1,4 +1,4 @@
-import './Table.scss'
+import './TransactionHistory.scss'
 import MUITable from '@mui/material/Table'; // Rename the imported Table component
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Table = () => { // Rename the Table component to CustomTable
+const TransactionHistory = () => { // Rename the Table component to CustomTable
   const cryptoTransactions = [
     { id: 1, date: '2022-04-01', type: 'Buy', currency: 'Bitcoin', amount: 0.1, price: 60000, total: 6000 },
     { id: 2, date: '2022-04-02', type: 'Sell', currency: 'Ethereum', amount: 1, price: 3000, total: 3000 },
@@ -47,4 +47,4 @@ const Table = () => { // Rename the Table component to CustomTable
   )
 }
 
-export default Table;
+export default TransactionHistory;

@@ -12,7 +12,11 @@ import OurTeam from './Com_team/Team';
 import Login from './componentsSignup-Login/Loginin';
 import Dashboard from '../PageDashboard/Dashboard';
 import Header2 from './componentsGeneral/Header2';
+import Profile from '../PageDashboard/Profile';
 import './App.css';
+
+import TransactionHistory from '../PageDashboard/transactionHistory/TransactionHistory';
+import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
 
 const App = () => {
   
@@ -30,7 +34,10 @@ const App = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/currency" element={<Currency />} />
           <Route path="/team" element={<OurTeam />} />
-          <Route path="/dashboard" component={<Dashboard/>} />       
+          <Route path="/Dashboard" component={<Dashboard/>} />       
+          <Route path="/Dashboard/TransactionHistory" element={<TransactionHistory/>} /> 
+          <Route path="/Dashboard/Profile" element={<Profile/>} /> 
+          <Route path="/Dashboard/PageAcceuilDash" element={<PageAcceuilDash/>} />
         </Routes>
       </div>
     </Router>

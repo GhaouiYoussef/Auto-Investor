@@ -14,22 +14,23 @@ function Signup() {
   const [password,setpassword]=useState('')
   const[action,setAction] = useState("Sign Up");
   // Inside your component
-
   const handleSubmit = (event) => {
-    console.log('submit')
     event.preventDefault();
     axios
-    .post('http://localhost:3001/Create',{name,email,password})
-    .then(()=>{
-      console.log('user added')
-      setname('')
-      setemail('')
-      setpassword('')
-    })
-    .catch((error)=>{
-      console.log('not added')
-    })
-  }
+      .post('http://localhost:3001/Create', { name, email, password })
+      .then(() => {
+        console.log('User added successfully');
+        setname('');
+        setemail('');
+        setpassword('');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        const errorMessage = error.response?.data?.error || 'An error occurred';
+        console.log('Error message:', errorMessage);
+        // Handle the error message state here
+      });
+  };
   
   return (
 <div className='container1' >

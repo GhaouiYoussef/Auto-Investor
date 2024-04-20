@@ -14,6 +14,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+    
     const [isHidden, setIsHidden] = useState(false);
 
     const toggleSidebar = () => {
@@ -37,7 +38,7 @@ const Sidebar = () => {
                     </li>
                     <p className="title">USEFUL</p>
                     <li>
-                    <Link to="/dashboard/PortfolioSummary" style={{ textDecoration: 'none' }}>
+                    <Link to="/Dashboard/PortfolioSummary" style={{ textDecoration: 'none' }}>
                         <SummarizeIcon className='icon' />
                         <span>Portfolio Summary</span>
                         </Link>
@@ -47,7 +48,7 @@ const Sidebar = () => {
                         <span>Notifications</span>
                     </li>
                     <li>
-                        <Link to="/dashboard/TransactionHistory" style={{ textDecoration: 'none' }}>
+                        <Link to="/Dashboard/TransactionHistory" style={{ textDecoration: 'none' }}>
                             <PaidIcon className='icon' />
                             <span>Transaction History</span>
                         </Link>
@@ -66,7 +67,7 @@ const Sidebar = () => {
                     </li>
                     <p className="title">USER</p>
                     <li>
-                    <Link to="/dashboard/profile" style={{ textDecoration: 'none' }}>
+                    <Link to="/Dashboard/profile" style={{ textDecoration: 'none' }}>
                         <PersonIcon className='icon' />
                         <span>Profile</span>
                         </Link>
