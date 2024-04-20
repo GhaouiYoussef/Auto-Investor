@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from './perfectlogo-transparent.png';
+import logoImage from './logoooo.png';
 import './Header.css';
 
   import axios from "axios";
@@ -23,8 +23,8 @@ import './Header.css';
   return (
     <header className="header-section clearfix">
       <div className="container-fluid">
-        <a href="index.html" className="site-logo">
-          <img src={logoImage} alt="Logo" />
+        <a href="" className="site-logo">
+          <img src={logoImage} className='rr' alt="Logo" />
         </a>
         <div className="responsive-bar"><i className="fa fa-bars"></i></div>
         <a href="" className="user"><i className="fa fa-user"></i></a>

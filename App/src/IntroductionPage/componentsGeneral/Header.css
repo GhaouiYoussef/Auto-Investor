@@ -13,7 +13,10 @@ margin-top: 0px; */
   align-items: center;
   gap: 2%;
   width: 100%;
+  border-bottom-width: 11px;
+
 }
+
 
 
 .header a {
@@ -58,7 +61,8 @@ margin-top: 0px; */
 
 }
 .header-section.clearfix {
-  background-color: #141726;
+  background-color: #09101a;
+  border-bottom-width: 11px;
 }
 .header-section{
   position: sticky;
@@ -113,6 +117,12 @@ margin-top: 0px; */
 
   
 }
+.rr{
+  width: 190px;
+  height: 56px;
+  object-fit: cover;
+  padding: 0%;
+}
 
 @media only screen and (max-width: 425px) {
   .header__logo {
@@ -146,6 +156,7 @@ margin-top: 0px; */
 }
 .site-btn{
   margin-bottom: 1%;
+  cursor: pointer;
 }
 Header .Titre{
   font-size: 1rem;

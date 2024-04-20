@@ -17,7 +17,7 @@ code {
 }
 * {
   margin: 0rem;
-  padding-bottom: 1%;
+  /* padding-bottom: 1%; */
   align-items: center;
   box-sizing: border-box;
 }
