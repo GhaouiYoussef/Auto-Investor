@@ -13,6 +13,7 @@ import Login from './componentsSignup-Login/Loginin';
 import Dashboard from '../PageDashboard/Dashboard';
 import Header2 from './componentsGeneral/Header2';
 import Profile from '../PageDashboard/Profile';
+import Packages from '../PageDashboard/Packages';
 import './App.css';
 
 import TransactionHistory from '../PageDashboard/transactionHistory/TransactionHistory';
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/Dashboard/TransactionHistory" element={<TransactionHistory/>} /> 
           <Route path="/Dashboard/Profile" element={<Profile/>} /> 
           <Route path="/Dashboard/PageAcceuilDash" element={<PageAcceuilDash/>} />
+          <Route path="/Dashboard/Packages" element={<Packages/>} />
         </Routes>
       </div>
     </Router>

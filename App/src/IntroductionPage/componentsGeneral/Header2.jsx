@@ -31,9 +31,9 @@ import './Header.css';
         <div className='site-btn' onClick={handleLogout}>Log Out</div>
         <nav className="main-menu">
           <ul className="menu-list">
-            <li><Link to='/dashboard/Profile'>Profile</Link></li>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to="/">Offers</Link></li>
+            <li><Link to='/Dashboard/Profile'>Profile</Link></li>
+            <li><Link to='/Dashboard/PageAcceuilDash'>Home</Link></li>
+            <li><Link to="/Dashboard/Packages">Offers</Link></li>
             <li><Link to="/">Currency</Link></li>
           </ul>
         </nav>

@@ -1,6 +1,10 @@
 import React from 'react';
 import logo from './img/logoooo.png';
 import './Footer.css';
+import { Link } from 'react-router-dom';
+import FAQ from '../../IntroductionPage/Com_faq/faq';
+import contact from '../../IntroductionPage/Com_contact/contact';
+
 function Footer() {
   return (
     <footer className="footer-sectionf">
@@ -8,10 +12,10 @@ function Footer() {
         <div className="row spad">
           <div className="col-md-6 col-lg-3 footer-widget">
             <img src={logo} className="mb-4" alt="Logo" />
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia dese mollit anim id est laborum.</p>
+            <p>Your guide through the cryptocurrency world.</p>
             <span>
-              Copyright &copy;{new Date().getFullYear()} All rights reserved | This template is made with 
-              <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              Copyright &copy;{new Date().getFullYear()} All rights reserved. 
+              
             </span>
           </div>
           <div className="col-md-6 col-lg-2 offset-lg-1 footer-widget">
@@ -37,8 +41,8 @@ function Footer() {
           <div className="col-md-6 col-lg-2 footer-widget">
             <h5 className="widget-title">Support</h5>
             <ul>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">FAQ</a></li>
+              <li><Link to="/contact">Contact Us</Link></li>
+              <li><Link to="/faq">FAQ</Link></li>
               <li><a href="#">Press</a></li>
               <li><a href="#">Help Desk</a></li>
               <li><a href="#">Cookies Policy</a></li>
