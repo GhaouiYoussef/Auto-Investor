@@ -23,15 +23,7 @@
   margin-left: 10px;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='tel'] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-} 
+
 
 .button-container {
   text-align: right;
