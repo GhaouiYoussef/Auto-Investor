@@ -6,7 +6,6 @@ const crypto = require('crypto');
 const coockieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
-const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
 const app = express();
