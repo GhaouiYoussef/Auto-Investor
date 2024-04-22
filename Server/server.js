@@ -6,14 +6,14 @@ const crypto = require('crypto');
 const coockieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
 const app = express();
 app.listen(3001, () => console.log('server is running on port 3001'));
 
 // MongoDB connection
-const mongoURI = process.env.MONGO_URI; // Your MongoDB connection URI
+/*const mongoURI = process.env.MONGO_URI; // Your MongoDB connection URI
 const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.connect(err => {
@@ -35,7 +35,7 @@ client.connect(err => {
             res.status(500).json({ error: 'Internal server error' });
         }
     });
-});
+});*/
 
 // Connect to database
 const pool = new Pool({
