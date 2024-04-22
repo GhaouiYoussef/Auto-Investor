@@ -22,7 +22,7 @@
 .info-value {
   margin-left: 10px;
 }
-
+/* 
 input[type='text'],
 input[type='email'],
 input[type='tel'] {
@@ -31,7 +31,7 @@ input[type='tel'] {
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-} 
+}  */
 
 .button-container {
   text-align: right;
