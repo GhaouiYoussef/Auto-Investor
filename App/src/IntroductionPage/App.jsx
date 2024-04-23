@@ -15,10 +15,11 @@ import Header2 from './componentsGeneral/Header2';
 import Profile from '../PageDashboard/Profile';
 import Packages from '../PageDashboard/Packages';
 import './App.css';
-
+import Payment from '../PageDashboard/Payment/Payment';
+import PaymentSuccess from '../PageDashboard/Payment/PaymentSuccess';
 import TransactionHistory from '../PageDashboard/transactionHistory/TransactionHistory';
 import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
-
+import PaidClient from '../PaidClient/PaidClient';
 const App = () => {
   
   return (
@@ -40,6 +41,9 @@ const App = () => {
           <Route path="/Dashboard/Profile" element={<Profile/>} /> 
           <Route path="/Dashboard/PageAcceuilDash" element={<PageAcceuilDash/>} />
           <Route path="/Dashboard/Packages" element={<Packages/>} />
+          <Route path="/Dashboard/Payment" element={<Payment/>} />
+          <Route path="/Dashboard/PaymentSuccess" element={<PaymentSuccess/>} />
+          <Route path="/Dashboard/PaidClient" element={<PaidClient/>} />
         </Routes>
       </div>
     </Router>

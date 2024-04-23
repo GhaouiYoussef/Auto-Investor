@@ -17,7 +17,7 @@ const Packages = () => {
           <p>$10 per month</p>
           <p>Access to basic features</p>
           <p>7-day free trial</p>
-          <Link to="/dashboard/InvestmentPlanRegistration" style={{ textDecoration: 'none' }} className='link-box'>
+          <Link to="/Dashboard/Payment" style={{ textDecoration: 'none' }} className='link-box'>
           <AppRegistrationIcon className="icon" />
           <p>Invest now</p>
           </Link>
@@ -28,7 +28,7 @@ const Packages = () => {
           <p>$20 per month</p>
           <p>Access to advanced features</p>
           <p>7-day free trial</p>
-          <Link to="/dashboard/InvestmentPlanRegistration" style={{ textDecoration: 'none' }} className='link-box'>
+          <Link to="/Dashboard/Payment" style={{ textDecoration: 'none' }} className='link-box'>
           <AppRegistrationIcon className="icon" />
           <p>Invest now</p>
           </Link>
@@ -38,7 +38,7 @@ const Packages = () => {
           <p>$30 per month</p>
           <p>Access to premium features</p>
           <p>7-day free trial</p>
-          <Link to="/dashboard/InvestmentPlanRegistration" style={{ textDecoration: 'none' }} className='link-box'>
+          <Link to="/Dashboard/Payment" style={{ textDecoration: 'none' }} className='link-box'>
           <AppRegistrationIcon className="icon" />
           <p>Invest now</p>
           </Link>
