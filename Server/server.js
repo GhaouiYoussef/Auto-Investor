@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const coockieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const executeTransaction = require('./transaction.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
 //const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
@@ -130,4 +131,16 @@ app.get('/verify', async (req, res) => {
 app.get("/logout", (req, res) => {
     res.clearCookie("token");
     return res.json({ status: "200" });
+});
+
+app.post('/api_balance', async (req, res) => {
+    const {apiKey, apiSecret } = req.body;
+    try {
+        const result = await executeTransaction(apiKey, apiSecret);
+        // Send the result back to the client
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal server error');
+    }
 });
