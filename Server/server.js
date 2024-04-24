@@ -3,16 +3,40 @@ const cors = require('cors')
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt')
 const crypto = require('crypto');
-const coockieParser= require('cookie-parser')
-const jwt=require('jsonwebtoken')
+const coockieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const executeTransaction = require('./transaction.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
-
+//const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 
 const app = express();
 app.listen(3001, () => console.log('server is running on port 3001'));
 
+// MongoDB connection
+/*const mongoURI = process.env.MONGO_URI; // Your MongoDB connection URI
+const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+client.connect(err => {
+    if (err) {
+        console.error('Error connecting to MongoDB:', err);
+        return;
+    }
+
+    const db = client.db('Coins'); // Change 'Coins' to your actual database name
+    const collection = db.collection('Info'); // Change 'Info' to your actual collection name
+
+    // API endpoint to fetch cryptocurrency data
+    app.get('/api/cryptodata', async (req, res) => {
+        try {
+            const cryptoData = await collection.find({}).toArray();
+            res.json(cryptoData);
+        } catch (error) {
+            console.error('Error fetching cryptocurrency data:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
+});*/
 
 // Connect to database
 const pool = new Pool({
@@ -120,8 +144,18 @@ app.get('/verify', async (req, res) => {
         }
     });
 app.get("/logout", (req, res) => {
-        res.clearCookie("token");
-        return res.json({ status: "200"});
-      });
-      
-    
+    res.clearCookie("token");
+    return res.json({ status: "200" });
+});
+
+app.post('/api_balance', async (req, res) => {
+    const {apiKey, apiSecret } = req.body;
+    try {
+        const result = await executeTransaction(apiKey, apiSecret);
+        // Send the result back to the client
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal server error');
+    }
+});
