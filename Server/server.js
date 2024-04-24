@@ -60,17 +60,26 @@ app.use(cors({
 app.post('/Create', async (req, res) => {
     const { name, email, password } = req.body;
     try {
-        const emailToken = crypto.randomBytes(64).toString('hex');
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const query = 'INSERT INTO users (name, email, password, is_verified, emailtoken) VALUES ($1, $2, $3, false, $4)';
-        await pool.query(query, [name, email, hashedPassword, emailToken]);
-        await sendVerificationEmail(email, emailToken);
-        res.status(200).send('User registered successfully. Verification email sent.');
+        // Check if email already exists
+        const emailExistsQuery = 'SELECT * FROM users WHERE email = $1';
+        const { rowCount: emailExists } = await pool.query(emailExistsQuery, [email]);
+        if (emailExists) {
+            console.log('email already in use')
+            return res.status(400).send('Email already in use. Please use another email.');
+        } else {
+            const emailToken = crypto.randomBytes(64).toString('hex');
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const query = 'INSERT INTO users (name, email, password, is_verified, emailtoken) VALUES ($1, $2, $3, false, $4)';
+            await pool.query(query, [name, email, hashedPassword, emailToken]);
+            await sendVerificationEmail(email, emailToken);
+            res.status(200).send('User registered successfully. Verification email sent.');
+        }
     } catch (error) {
         console.error('Error inserting user', error);
         res.status(500).send('Internal server error');
     }
 });
+
 
 // Login
 app.post('/Login', async (req, res) => {

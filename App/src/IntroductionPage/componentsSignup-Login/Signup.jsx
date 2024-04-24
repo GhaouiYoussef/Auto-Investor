@@ -14,23 +14,36 @@ function Signup() {
   const [password,setpassword]=useState('')
   const[action,setAction] = useState("Sign Up");
   // Inside your component
-  const handleSubmit = (event) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post('http://localhost:3001/Create', { name, email, password })
-      .then(() => {
-        console.log('User added successfully');
+    try {
+      // Make POST request to create user
+      await axios.post('http://localhost:3001/Create', { name, email, password });
+      console.log('User added successfully');
+      setname('');
+      setemail('');
+      setpassword('');
+      setErrorMessage('');
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage = error.response?.data || 'An error occurred';
+      console.log('Error message:', errorMessage);
+      if (errorMessage === 'Email already in use. Please use another email.') {
+        // Update the error message state
         setname('');
         setemail('');
         setpassword('');
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        const errorMessage = error.response?.data?.error || 'An error occurred';
-        console.log('Error message:', errorMessage);
-        // Handle the error message state here
-      });
+        setErrorMessage('');
+        setErrorMessage('Email is already in use. Please use another email.');
+      } else {
+        setErrorMessage('An error occurred. Please try again.');
+      }
+    }
   };
+  
+  
   
   return (
 <div className='container1' >
@@ -93,6 +106,7 @@ function Signup() {
         </div>
         
       </form>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
       </div>
       <img src={wp} alt="wp" className="imageclass" />
