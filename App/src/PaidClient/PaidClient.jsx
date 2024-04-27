@@ -4,12 +4,17 @@ import axios from 'axios';
 
 const CandlestickChart = () => {
   const [candlestickData, setCandlestickData] = useState([]);
-//return coin name
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/fetchData');//http://localhost:3001/fetchData{coinName}
-        setCandlestickData(response.data);
+        const response = await axios.get('http://localhost:3001/fetchData');
+        const filteredData = response.data.filter(item => {
+          // Assuming 'timestamp' is the key for the timestamp value
+          const timestamp = new Date(item.timestamp);
+          return timestamp >= new Date('2024-04-22') && timestamp <= new Date('2024-04-27');
+        });
+        setCandlestickData(filteredData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -30,8 +35,8 @@ const CandlestickChart = () => {
             high: candlestickData.map(item => item.high),
             low: candlestickData.map(item => item.low),
             close: candlestickData.map(item => item.close),
-            increasing: { line: { color: 'green' } },
-            decreasing: { line: { color: 'red' } },
+            increasing: { line: { color: 'green' , width:2} },
+            decreasing: { line: { color: 'red' , width:2} },
           },
         ]}
         layout={{
