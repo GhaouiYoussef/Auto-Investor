@@ -51,6 +51,10 @@ const CandlestickChart = () => {
           yaxis: {
             title: 'Price',
           },
+          xaxis: {
+            rangeslider: { visible: false },
+          }
+          
         }}
       />
     </div>
