@@ -1,23 +1,22 @@
 .Sidebar {
-
-    flex: 1;
+    width: 10rem; /* Default width */
+    flex-shrink: 0;
     border-right: 0.5px solid rgb(209, 178, 178);
     min-height: 100vh;
-    
+    display: flex;
+    flex-direction: column;
 
     .top {
-
         height: 5%;
         display: flex;
         align-items: center;
         justify-content: center;
 
         .logo {
-            font-size: 20px;
+            font-size: 1.25rem;
             font-weight: bold;
             color: #6439ff;
         }
-
     }
 
     hr {
@@ -27,6 +26,7 @@
 
     .center {
         padding-left: 0vw;
+        flex-grow: 1;
 
         ul {
             list-style: none;
@@ -34,7 +34,7 @@
             padding: 0;
 
             .title {
-                font-size: 10px;
+                font-size: 0.625rem; /* Adjusted font size for responsiveness */
                 font-weight: bold;
                 color: #999;
                 margin-top: 15px;
@@ -44,7 +44,7 @@
             li {
                 display: flex;
                 align-items: center;
-                padding: 5px;
+                padding: 0.3125rem; /* Adjusted padding for responsiveness */
                 cursor: pointer;
 
                 &:hover {
@@ -52,17 +52,16 @@
                 }
 
                 .icon {
-                    font-size: 18px;
-                    color: #7451f8
+                    font-size: 1rem;
+                    color: #7451f8;
                 }
 
                 span {
-                    font-size: 13px;
+                    font-size: 0.8125rem; /* Adjusted font size for responsiveness */
                     font-weight: 600;
                     color: #888;
-                    margin-left: 10px;
+                    margin-left: 0.625rem; /* Adjusted margin for responsiveness */
                 }
-
             }
         }
     }
@@ -70,15 +69,15 @@
     .bottom {
         display: flex;
         align-items: center;
-        margin: 10px;
+        margin: 0.625rem; /* Adjusted margin for responsiveness */
 
         .colorOption {
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
+            width: 1.25rem; /* Adjusted width for responsiveness */
+            height: 1.25rem; /* Adjusted height for responsiveness */
+            border-radius: 0.3125rem; /* Adjusted border radius for responsiveness */
             border: 1px solid #7451f8;
             cursor: pointer;
-            margin: 5px;
+            margin: 0.3125rem;
 
             &:nth-child(1) {
                 background-color: whitesmoke;
@@ -89,7 +88,13 @@
             }
         }
     }
+
     &.hidden {
         display: none;
+    }
+
+    // Responsive styles
+    @media screen and (max-width: 768px) {
+        width: 70%; /* Adjusted width for smaller screens */
     }
 }
