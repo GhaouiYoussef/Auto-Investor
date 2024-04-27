@@ -1,0 +1,79 @@
+.candlestick-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem; // Adjust padding as needed
+  
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem; // Adjust the font size using rem
+      color: #0b0f11; // Adjust the color as needed
+    }
+  
+    h4 {
+      margin-bottom: 1rem;
+      font-size: 1rem; // Adjust the font size using rem
+      color: #0b0f11; // Adjust the color as needed
+    }
+  
+    .chart-options {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+  
+      select,
+      input[type="date"] {
+        padding: 0.5rem;
+        margin: 0 0.5rem;
+        font-size: 1rem; // Adjust the font size using rem
+        border: 1px solid #ccc; // Adjust the border color as needed
+        border-radius: 4px; // Adjust the border radius as needed
+      }
+  
+      select {
+        width: 30%; // Adjust the width using percentages
+      }
+  
+      span {
+        font-size: 1rem; // Adjust the font size using rem
+        color: #143b71; // Adjust the color as needed
+      }
+    }
+  
+    .loading-message,
+    .error-message {
+      margin-top: 1rem;
+      font-size: 1rem; // Adjust the font size using rem
+      color: #ff0000; // Adjust the color as needed
+    }
+  
+    .plot-container {
+      width: 100%; // Ensure the chart takes full width
+    }
+  }
+  
+  .candlestick-chart-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem; /* Adjust padding using rem */
+    align-items: center;
+  }
+  
+  .chart-options {
+    display: flex;
+    margin-bottom: 1rem; /* Adjust margin using rem */
+    align-items: center;
+  }
+  
+  .explanation-link {
+    margin-left: auto;
+    padding: 0.8rem; /* Adjust padding using rem */
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .explanation-link:hover {
+    text-decoration: underline;
+  }
+  

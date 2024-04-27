@@ -19,7 +19,12 @@ import Payment from '../PageDashboard/Payment/Payment';
 import PaymentSuccess from '../PageDashboard/Payment/PaymentSuccess';
 import TransactionHistory from '../PageDashboard/transactionHistory/TransactionHistory';
 import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
+//import CandlestickChartExplanation from '../PaidClient/CandlestickChartExplanation';
+
 import PaidClient from '../PaidClient/PaidClient';
+
+
+
 const App = () => {
   
   return (
@@ -44,6 +49,8 @@ const App = () => {
           <Route path="/Dashboard/Payment" element={<Payment/>} />
           <Route path="/Dashboard/PaymentSuccess" element={<PaymentSuccess/>} />
           <Route path="/Dashboard/PaidClient" element={<PaidClient/>} />
+          
+
         </Routes>
       </div>
     </Router>
