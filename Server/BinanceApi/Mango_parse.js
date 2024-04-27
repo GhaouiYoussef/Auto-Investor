@@ -23,7 +23,7 @@ async function fetchData() {
         const collection = database.collection("Info");
 
         // Fetch data from MongoDB
-        const data = await collection.find({}).toArray();
+        const data = await collection.find({'symbol':'AAVEUSDT'}).toArray();
 
         // Write data to JSON file
         const jsonFilePath = 'candlesticksIfetched.json';
