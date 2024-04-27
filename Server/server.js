@@ -7,6 +7,7 @@ const coockieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const executeTransaction = require('./transaction.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
+//const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 const fetchData = require('./fetchData');
 const app = express();
