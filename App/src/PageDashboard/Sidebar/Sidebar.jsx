@@ -12,9 +12,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+
+import ClearIcon from '@mui/icons-material/Clear';
 
 const Sidebar = () => {
-    
     const [isHidden, setIsHidden] = useState(false);
 
     const toggleSidebar = () => {
@@ -26,7 +28,10 @@ const Sidebar = () => {
             <div className="top">
                 <span className="logo">CryptoPal</span>
                 {/* Button to toggle visibility */}
-                <button onClick={toggleSidebar}>Toggle Sidebar</button>
+                <button onClick={toggleSidebar}><MenuIcon/></button>
+                {isHidden && (
+                    <button onClick={toggleSidebar}>Show Sidebar</button>
+                )}
             </div>
             <hr />
             <div className="center">
@@ -38,9 +43,9 @@ const Sidebar = () => {
                     </li>
                     <p className="title">USEFUL</p>
                     <li>
-                    <Link to="/Dashboard/PortfolioSummary" style={{ textDecoration: 'none' }}>
-                        <SummarizeIcon className='icon' />
-                        <span>Portfolio Summary</span>
+                        <Link to="/Dashboard/PortfolioSummary" style={{ textDecoration: 'none' }}>
+                            <SummarizeIcon className='icon' />
+                            <span>Portfolio Summary</span>
                         </Link>
                     </li>
                     <li>
@@ -67,15 +72,15 @@ const Sidebar = () => {
                     </li>
                     <p className="title">USER</p>
                     <li>
-                    <Link to="/Dashboard/profile" style={{ textDecoration: 'none' }}>
-                        <PersonIcon className='icon' />
-                        <span>Profile</span>
+                        <Link to="/Dashboard/profile" style={{ textDecoration: 'none' }}>
+                            <PersonIcon className='icon' />
+                            <span>Profile</span>
                         </Link>
                     </li>
                     <li >
-                    <Link to="/Page-Login" style={{ textDecoration: 'none' }}>
-                        <LogoutIcon className='icon' />
-                        <span>Logout</span>
+                        <Link to="/Page-Login" style={{ textDecoration: 'none' }}>
+                            <LogoutIcon className='icon' />
+                            <span>Logout</span>
                         </Link>
                     </li>
                     <li>
