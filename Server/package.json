@@ -1,5 +1,6 @@
 {
   "name": "backend",
+  "proxy": "http://127.0.0.1:3001/",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -17,6 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "google-auth-library": "^9.9.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "node-binance-api": "^0.13.1",

@@ -1,12 +1,62 @@
 import './Signup.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import email_icon from './email.png';
 import password_icon from './password.png';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import wp from './wpp.svg'
+import wp from './wpp.svg';
+import googleOneTap from "google-one-tap"
+
+
+const options = {
+      client_id:"596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com",
+      auto_select: false,
+      cancel_on_tap_outside: false,
+      context: "signin",
+
+}
+
 
 function Login() {
+
+    const [loginData, setLoginData] = useState(
+       localStorage.getItem("loginData")
+       ? JSON.parse(localStorage.getItem("loginData"))
+       : null
+    );
+    useEffect(() => {
+       if(!loginData){
+        googleOneTap(options, async (response) => {
+            console.log(response);
+            const res = await fetch("http://localhost:3001/api/google-login", {
+               method: "POST",
+               body: JSON.stringify({
+                 token: response.credential,
+               }),
+               headers: {
+                "Content-Type": "application/json",
+               },      
+            });
+        
+          const data = await res.json();
+          setLoginData(data);
+          localStorage.setItem("loginData", JSON.stringify(data));
+        });
+       }
+       
+
+
+
+    }, [loginData]);
+
+    const handlelogout = () => {
+      localStorage.removeItem("loginData");
+      setLoginData(null);
+    } 
+
+
+
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -79,6 +129,19 @@ function Login() {
                             </div>
                         </div>
                     </form>
+                    <div>
+                       {loginData ? (
+                        <div>
+                       <h3>
+                        YOU "{loginData.name}" logged in as {loginData.email}
+                       </h3>
+                       <button onClick={handlelogout}>Logout</button>
+                       </div>
+                       ):(
+                        <div>Not logged in</div>
+                       )}
+
+                    </div>
                 </div>
             </div>
             <img src={wp} alt="wp" className="imageclass" />
