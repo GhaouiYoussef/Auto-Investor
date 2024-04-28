@@ -134,19 +134,9 @@ function Login() {
                             </div>
                         </div>
                     </form>
-                    <div>
-                       {loginData ? (
-                        <div>
-                       <h3>
-                        YOU "{loginData.name}" logged in as {loginData.email}
-                       </h3>
-                       <button onClick={handlelogout}>Logout</button>
-                       </div>
-                       ):(
-                        <div>Not logged in</div>
-                       )}
 
-                    </div>
+
+
                 </div>
             </div>
             <img src={wp} alt="wp" className="imageclass" />
