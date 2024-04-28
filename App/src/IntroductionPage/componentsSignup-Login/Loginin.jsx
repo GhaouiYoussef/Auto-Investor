@@ -1,12 +1,67 @@
 import './Signup.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import email_icon from './email.png';
 import password_icon from './password.png';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import wp from './wpp.svg'
+import wp from './wpp.svg';
+import googleOneTap from "google-one-tap"
+import { useLocation } from 'react-router-dom'; // Assuming you're using React Router
+
+
+const options = {
+      client_id:"596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com",
+      auto_select: false,
+      cancel_on_tap_outside: false,
+      context: "signin",
+
+}
+
 
 function Login() {
+
+    const [loginData, setLoginData] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const location = useLocation();
+  
+    // useEffect(() => {
+    //   const storedLoginData = localStorage.getItem("loginData");
+    //   if (storedLoginData) {
+    //     setLoginData(JSON.parse(storedLoginData));
+    //     setIsAuthenticated(true);
+    //   } else {
+    //     if (location.pathname.endsWith("")) {
+    //       googleOneTap(options, async (response) => {
+    //         console.log(response);
+    //         const res = await fetch("http://localhost:3001/api/google-login", {
+    //           method: "POST",
+    //           body: JSON.stringify({
+    //             token: response.credential,
+    //           }),
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //           },      
+    //         });
+            
+    //         const data = await res.json();
+    //         setLoginData(data);
+    //         localStorage.setItem("loginData", JSON.stringify(data));
+    //         setIsAuthenticated(true);
+    //         console.log(data);
+    //         console.log('Hello');
+    //       });
+    //     } else {
+    //       setIsAuthenticated(true); // Skip authentication if URL doesn't end with "Page-Login"
+    //     }
+    //   }
+    // }, [location.pathname]);
+
+    const handlelogout = () => {
+      localStorage.removeItem("loginData");
+      setLoginData(null);
+    } 
+
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -79,6 +134,9 @@ function Login() {
                             </div>
                         </div>
                     </form>
+
+
+
                 </div>
             </div>
             <img src={wp} alt="wp" className="imageclass" />
