@@ -7,8 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   width: 100%; /* Occupy entire width of the viewport */
-  background: linear-gradient(#09101a, #000);
-  
+  background: linear-gradient(0.25turn, #000, #09101a, #09101a);  
   
 }
 

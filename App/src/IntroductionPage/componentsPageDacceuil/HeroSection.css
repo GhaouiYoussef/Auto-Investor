@@ -2,8 +2,8 @@
     width: 100%;
     height: auto;
     padding: 10%;
-    background-color: black;
-    background-image: url("./img/hero-bg.png");
+    background: linear-gradient(0.25turn, #000, #09101a, #09101a);
+        background-image: url("./img/hero-bg.png");
     background-size: cover;
 }
 

@@ -1,7 +1,7 @@
 /* Process.css */
 .process-section {
   padding: 100px 0 90px 0;
-  background: linear-gradient(#09101a, #000);
+  background: linear-gradient(0.25turn, #000, #09101a, #09101a);
 }
 
 .containerp {

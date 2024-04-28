@@ -27,8 +27,7 @@
 }
 .features-section.spad.gradient-bgp{
   background: none;
-  background-color: #09101a;
-}
+  background: linear-gradient(0.25turn, #000, #09101a, #09101a);}
 .containerf .row{
   display: flex;
   justify-content: center;

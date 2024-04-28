@@ -26,8 +26,7 @@ const Sidebar = () => {
     return (
         <div className={`Sidebar ${isHidden ? 'hidden' : ''}`}>
             <div className="top">
-                <span className="logo">CryptoPal</span>
-                {/* Button to toggle visibility */}
+]                {/* Button to toggle visibility */}
                 <button onClick={toggleSidebar}><MenuIcon/></button>
                 {isHidden && (
                     <button onClick={toggleSidebar}>Show Sidebar</button>

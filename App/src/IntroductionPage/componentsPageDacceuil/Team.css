@@ -1,7 +1,6 @@
 .team-section{
     /* background-image: url('./img/low-poly-grid-haikei.svg'); */
-    background-color: black;
-}
+    background: linear-gradient(0.25turn, #000, #09101a, #09101a);}
 .containerT{
     align-items: center;
 }
