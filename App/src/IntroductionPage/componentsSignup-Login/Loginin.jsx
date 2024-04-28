@@ -24,7 +24,10 @@ function Login() {
        ? JSON.parse(localStorage.getItem("loginData"))
        : null
     );
+    
     useEffect(() => {
+      console.log('hello');
+      console.log('loginData',loginData);
        if(!loginData){
         googleOneTap(options, async (response) => {
             console.log(response);
@@ -44,7 +47,6 @@ function Login() {
         });
        }
        
-
 
 
     }, [loginData]);
