@@ -2,8 +2,6 @@ import React from 'react';
 import logo from './img/logoooo.png';
 import './Footer.css';
 import { Link } from 'react-router-dom';
-import FAQ from '../../IntroductionPage/Com_faq/faq';
-import contact from '../../IntroductionPage/Com_contact/contact';
 
 function Footer() {
   return (
