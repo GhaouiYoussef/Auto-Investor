@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import wp from './wpp.svg';
 import googleOneTap from "google-one-tap"
+import { useLocation } from 'react-router-dom'; // Assuming you're using React Router
 
 
 const options = {
@@ -19,37 +20,41 @@ const options = {
 
 function Login() {
 
-    const [loginData, setLoginData] = useState(
-       localStorage.getItem("loginData")
-       ? JSON.parse(localStorage.getItem("loginData"))
-       : null
-    );
-    
-    useEffect(() => {
-      console.log('hello');
-      console.log('loginData',loginData);
-       if(!loginData){
-        googleOneTap(options, async (response) => {
-            console.log(response);
-            const res = await fetch("http://localhost:3001/api/google-login", {
-               method: "POST",
-               body: JSON.stringify({
-                 token: response.credential,
-               }),
-               headers: {
-                "Content-Type": "application/json",
-               },      
-            });
-        
-          const data = await res.json();
-          setLoginData(data);
-          localStorage.setItem("loginData", JSON.stringify(data));
-        });
-       }
-       
-
-
-    }, [loginData]);
+    const [loginData, setLoginData] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const location = useLocation();
+  
+    // useEffect(() => {
+    //   const storedLoginData = localStorage.getItem("loginData");
+    //   if (storedLoginData) {
+    //     setLoginData(JSON.parse(storedLoginData));
+    //     setIsAuthenticated(true);
+    //   } else {
+    //     if (location.pathname.endsWith("")) {
+    //       googleOneTap(options, async (response) => {
+    //         console.log(response);
+    //         const res = await fetch("http://localhost:3001/api/google-login", {
+    //           method: "POST",
+    //           body: JSON.stringify({
+    //             token: response.credential,
+    //           }),
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //           },      
+    //         });
+            
+    //         const data = await res.json();
+    //         setLoginData(data);
+    //         localStorage.setItem("loginData", JSON.stringify(data));
+    //         setIsAuthenticated(true);
+    //         console.log(data);
+    //         console.log('Hello');
+    //       });
+    //     } else {
+    //       setIsAuthenticated(true); // Skip authentication if URL doesn't end with "Page-Login"
+    //     }
+    //   }
+    // }, [location.pathname]);
 
     const handlelogout = () => {
       localStorage.removeItem("loginData");
@@ -129,19 +134,9 @@ function Login() {
                             </div>
                         </div>
                     </form>
-                    <div>
-                       {loginData ? (
-                        <div>
-                       <h3>
-                        YOU "{loginData.name}" logged in as {loginData.email}
-                       </h3>
-                       <button onClick={handlelogout}>Logout</button>
-                       </div>
-                       ):(
-                        <div>Not logged in</div>
-                       )}
 
-                    </div>
+
+
                 </div>
             </div>
             <img src={wp} alt="wp" className="imageclass" />

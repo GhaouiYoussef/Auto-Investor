@@ -5,9 +5,9 @@ import './Header.css';
 
   import axios from "axios";
 
-  function Header2() {
+  function Header2(handleLogoutFromApp) {
     axios.defaults.withCredentials = true;// to force credentials to every Axios requests
-  const handleLogout = () => {
+  const handleLogout = (setLoginData) => {
     
     axios
       .get("http://localhost:3001/logout")
@@ -19,6 +19,10 @@ import './Header.css';
         }
       })
       .catch((err) => console.log(err));
+      console.log('logout');
+      localStorage.removeItem("loginData");
+      setLoginData(null);
+      return false;// Return false after executing the logout function
   };
   return (
     <header className="header-section clearfix">
@@ -28,7 +32,9 @@ import './Header.css';
         </a>
         <div className="responsive-bar"><i className="fa fa-bars"></i></div>
         <a href="" className="user"><i className="fa fa-user"></i></a>
-        <div className='site-btn' onClick={handleLogout}>Log Out</div>
+        {/* <div className='site-btn' onClick={handleLogout}>Log Out</div> */}
+        <div className='site-btn' onClick={() => handleLogoutFromApp(handleLogout())}>Log Out</div>
+
         <nav className="main-menu">
           <ul className="menu-list">
             <li><Link to='/Dashboard/Profile'>Profile</Link></li>
