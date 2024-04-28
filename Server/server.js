@@ -140,3 +140,35 @@ app.post('/api_balance', async (req, res) => {
 
 app.get('/fetchData', fetchData);
 
+app.post('/Login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const query = 'SELECT name, email FROM users WHERE email = $1';
+      const result = await pool.query(query, [email]);
+  
+      if (result.rows.length > 0) {
+        const user = result.rows[0];
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+  
+        if (isPasswordMatch) {
+          // Passwords match
+          const token = jwt.sign({ name: user.name, email: user.email }, 'your-secret-key', { expiresIn: '1d' });
+          res.cookie('token', token);
+          res.status(200).json({ name: user.name, email: user.email }); // Return name and email
+          console.log('User logged in successfully');
+        } else {
+          // Passwords do not match
+          res.status(401).json({ error: 'Invalid email or password' });
+          console.log('Invalid email or password');
+        }
+      } else {
+        // User does not exist
+        res.status(401).json({ error: 'Invalid email or password' });
+        console.log('User not found');
+      }
+    } catch (error) {
+      console.error('Error logging in user:', error);
+      res.status(500).send('Internal server error');
+    }
+  });
+

@@ -10,6 +10,7 @@ import FAQ from './Com_faq/faq';
 import Currency from './Com_currency/currency';
 import OurTeam from './Com_team/Team';
 import Login from './componentsSignup-Login/Loginin';
+import SignupSuccess from './componentsSignup-Login/SignupSuccess';
 import Dashboard from '../PageDashboard/Dashboard';
 import Header2 from './componentsGeneral/Header2';
 import Profile from '../PageDashboard/Profile';
@@ -49,7 +50,7 @@ const App = () => {
           <Route path="/Dashboard/Payment" element={<Payment/>} />
           <Route path="/Dashboard/PaymentSuccess" element={<PaymentSuccess/>} />
           <Route path="/Dashboard/PaidClient" element={<PaidClient/>} />
-          
+          <Route path="/signup-success" element={< SignupSuccess/>} />
 
         </Routes>
       </div>
