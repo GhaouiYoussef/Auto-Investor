@@ -98,3 +98,13 @@
         width: 70%; /* Adjusted width for smaller screens */
     }
 }
+.PageAcceuilDash .center{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.Sidebar .center ul{
+    flex: 1; /* Let the items grow to fill the available space equally */
+    height: 1000px;
+}

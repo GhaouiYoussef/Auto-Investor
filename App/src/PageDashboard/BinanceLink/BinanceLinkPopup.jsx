@@ -25,7 +25,7 @@ const BinanceLinkPopup = ({ onClose, onLinkSuccess }) => {
     <div className="binance-link-popup">
       <div className="popup-content">
         <button className="close-btn" onClick={onClose}><ClearIcon/></button>
-        <h2>Link Your Binance Account</h2>
+        <h2 >Link Your Binance Account</h2>
         {error && <div className="error">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">

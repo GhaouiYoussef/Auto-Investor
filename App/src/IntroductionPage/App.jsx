@@ -117,7 +117,7 @@ const HeaderControl = ({ setLoginData }) => { // Destructure handleLogout from p
   // Function to render the appropriate header based on the route
   function renderHeader() {
     if (location.pathname.startsWith("/Dashboard")) {
-      return <Header2  handleLogoutFromApp={setLoginData}/>; // Pass handleLogout as a prop
+      return <Header2  setLoginData={setLoginData}/>; // Pass handleLogout as a prop
     } else {
       return <Header />;
     }
