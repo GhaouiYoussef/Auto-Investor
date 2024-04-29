@@ -73,6 +73,7 @@ function Login() {
         event.preventDefault();
         axios
             .post('http://localhost:3001/Login', { email, password })
+            
             .then(() => {
                 console.log('User logged in');
                 setEmail('');

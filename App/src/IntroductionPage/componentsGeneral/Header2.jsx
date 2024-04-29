@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import axios from "axios";
 
 
-  function Header2(setLoginData) {
+  function Header2({setLoginData}) {
 
     const [isHidden, setIsHidden] = useState(false);
 
