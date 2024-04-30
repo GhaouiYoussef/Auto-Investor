@@ -85,7 +85,7 @@ app.post('/api/google-login', async (req, res) => {
     console.log('tokenMta3Google',authToken);
 
     // Set cookie with the generated token
-    res.cookie('token', authToken, { httpOnly: true });
+    res.cookie('tokenMta3Google', authToken, { httpOnly: true });
     
     // Respond with the generated token
     res.status(201).json({ authToken });
@@ -130,7 +130,7 @@ app.post('/Login',async (req,res) =>{
             if (isPasswordMatch) {
                  //Passwords match
                 const token = jwt.sign({name},'696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '30s' });
-                res.cookie('tokenTT',token);
+                res.cookie('token',token);
                 console.log('token',token);
                 res.status(200).send('User logged in successfully');
                 console.log('User logged in successfully');
@@ -185,7 +185,10 @@ app.get('/verify', async (req, res) => {
     });
 app.get("/logout", (req, res) => {
     res.clearCookie("token");
-    return res.json({ status: "200" });
+        // Send a JSON response with a logout message
+        return res.status(200).json({ message: 'Logout successful' });
+    // return res.json({ status: "200" });
+    
 });
 
 app.post('/api_balance', async (req, res) => {
@@ -223,9 +226,9 @@ function verifyToken(token) {
   }
   
   // Usage:
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlvdXNzZWYuZ2hhb3VpQGVuc2ktdW1hLnRuIiwibmFtZSI6IllvdXNzZWYgR2hhb3VpIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pIbEJuQXJXaXIzajB3M3czT0NyOUNuRGpZRTByWTQyVkpQcE94UnlBNDJuMk5aZz1zOTYtYyIsImlhdCI6MTcxNDM4Njg5MSwiZXhwIjoxNzE0Mzg2OTIxfQ.lC3UQw0dkbTRufDJS4tv8X-VznOtPxYCQBBWqf1p9iU';
-  const result = verifyToken(token);
-  console.log(result);
+  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlvdXNzZWYuZ2hhb3VpQGVuc2ktdW1hLnRuIiwibmFtZSI6IllvdXNzZWYgR2hhb3VpIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pIbEJuQXJXaXIzajB3M3czT0NyOUNuRGpZRTByWTQyVkpQcE94UnlBNDJuMk5aZz1zOTYtYyIsImlhdCI6MTcxNDM4Njg5MSwiZXhwIjoxNzE0Mzg2OTIxfQ.lC3UQw0dkbTRufDJS4tv8X-VznOtPxYCQBBWqf1p9iU';
+  // const result = verifyToken(token);
+  // console.log(result);
 
 
   
@@ -244,4 +247,5 @@ function verifyToken(token) {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
-  
+
+

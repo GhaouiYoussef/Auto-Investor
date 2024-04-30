@@ -8,6 +8,14 @@ import  { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function Header() {
+    // Add a state to manage the authentication status
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    // UseEffect to check authentication status on component mount
+    useEffect(() => {
+      const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+      setIsAuthenticated(authStatus);
+    }, []);
   return (
     <header className='header-section clearfix'>
       <div className="container-fluid">
@@ -27,10 +35,12 @@ function Header() {
         </a>
         
         {/* Sign-up button */}
+        {!isAuthenticated && (
         <Link to="/Page-Signup" className="site-btn">
           Sign Up For Free
         </Link>
-        
+        )}
+
         {/* Main navigation menu */}
         <nav className="main-menu">
           <ul className="menu-list">

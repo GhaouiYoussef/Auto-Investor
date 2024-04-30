@@ -34,13 +34,14 @@ const App = () => {
       ? JSON.parse(localStorage.getItem("loginData"))
       : null
   );
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const isAuthenticated = useRef(localStorage.getItem('isAuthenticated') === 'true')//useRef(localStorage.getItem('isAuthenticated') === 'false');
-  const isAuthenticated2 = useRef(localStorage.getItem('isAuthenticated') === 'false');
-
-  // const [isAuthenticated2, setIsAuthenticated2] = useState(false);
+  
+  const isAuthenticated = useRef(localStorage.getItem('isAuthenticated') === 'true');
+  const pathParts = window.location.pathname.split('/');
   
   useEffect(() => {
+    const pathParts = window.location.pathname.split('/'); // Split the URL path by '/'
+    console.log('pathParts', pathParts);
+  
     const fetchData = async () => {
       try {
         console.log('loginData for checking', loginData['authToken']);
@@ -52,16 +53,25 @@ const App = () => {
         if (verif_res.status === 200) {
           isAuthenticated.current = true;
           localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
-        } else {
-          window.location.href = "/Page-Login";
+          if (window.location.pathname === "/Page-Login" || window.location.pathname === "/Page-Signup") {
+            window.location.href = "/Dashboard/PageAcceuilDash";
+          }
         }
+        // } else {
+        //   window.location.href = "/Page-Login";
+        // }
       } catch (error) {
-        console.error('Error verifying token:', error);
-        console.log('error.message', error.message);
+  
+        //This two lines are necessary when normal user log in with email and pass
         isAuthenticated.current = false;
         localStorage.setItem('isAuthenticated', 'false'); // Store the value in localStorage
-        window.location.href = "/Page-Login";
-
+        console.log('isAuthenticated', isAuthenticated);
+        window.location.href = "/Dashboard/PageAcceuilDash";
+        console.error('Error verifying token:', error);
+        console.log('error.message', error.message);
+  
+        // window.location.href = "/Page-Login";
+  
       }
     };
   
@@ -71,10 +81,10 @@ const App = () => {
       fetchData();
     }
   
-    if (!isAuthenticated.current) {
+    if(!isAuthenticated.current && pathParts.length <= 2) {
       console.log('loginData at the start', loginData);
-      isAuthenticated.current = true;
-      localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
+      // isAuthenticated.current = true;
+      // localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
       googleOneTap(options, async (response) => {
         try {
           const res = await fetch("http://localhost:3001/api/google-login", {
@@ -107,22 +117,11 @@ const App = () => {
   
     console.log('loginData from Server', loginData);
   
-    const pathParts = window.location.pathname.split('/'); // Split the URL path by '/'
-    console.log('pathParts', pathParts);
-  
-    // if (pathParts.length <= 2 && loginData !== null) {
-    //   console.log('hak lena', loginData);
-    //   window.location.href = "/Dashboard/PageAcceuilDash";
-    // }
-  }, [loginData]); // Removed isAuthenticated from the dependency array since it's managed by useRef
+  }, [pathParts]); // Include pathParts in the dependency array
   
 
 
-  // const handlelogout = () => {
-  //   console.log('logout');
-  //   localStorage.removeItem("loginData");
-  //   setLoginData(null);
-  // }
+
 
   return (
     <Router>

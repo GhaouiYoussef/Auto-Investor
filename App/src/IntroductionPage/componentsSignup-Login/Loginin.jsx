@@ -1,5 +1,5 @@
 import './Signup.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import email_icon from './email.png';
 import password_icon from './password.png';
 import axios from 'axios';
@@ -19,48 +19,17 @@ const options = {
 
 
 function Login() {
-
-    const [loginData, setLoginData] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
     const location = useLocation();
-  
-    // useEffect(() => {
-    //   const storedLoginData = localStorage.getItem("loginData");
-    //   if (storedLoginData) {
-    //     setLoginData(JSON.parse(storedLoginData));
-    //     setIsAuthenticated(true);
-    //   } else {
-    //     if (location.pathname.endsWith("")) {
-    //       googleOneTap(options, async (response) => {
-    //         console.log(response);
-    //         const res = await fetch("http://localhost:3001/api/google-login", {
-    //           method: "POST",
-    //           body: JSON.stringify({
-    //             token: response.credential,
-    //           }),
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //           },      
-    //         });
-            
-    //         const data = await res.json();
-    //         setLoginData(data);
-    //         localStorage.setItem("loginData", JSON.stringify(data));
-    //         setIsAuthenticated(true);
-    //         console.log(data);
-    //         console.log('Hello');
-    //       });
-    //     } else {
-    //       setIsAuthenticated(true); // Skip authentication if URL doesn't end with "Page-Login"
-    //     }
-    //   }
-    // }, [location.pathname]);
 
-    const handlelogout = () => {
-      localStorage.removeItem("loginData");
-      setLoginData(null);
+    useEffect(() => {
+        const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+        setIsAuthenticated(authStatus);
+    }, []);
+
+    const handleLogout = () => {
+        setIsAuthenticated(false); // Set isAuthenticated to false when logging out
     } 
-
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -73,13 +42,14 @@ function Login() {
         event.preventDefault();
         axios
             .post('http://localhost:3001/Login', { email, password })
-            
             .then(() => {
+                setIsAuthenticated(true); // Set isAuthenticated to true when logging in
                 console.log('User logged in');
                 setEmail('');
                 setPassword('');
                 setError('');
-                navigate('/Dashboard/PageAcceuilDash');
+                window.location.href = "/Dashboard/PageAcceuilDash";
+                // navigate('/Dashboard/PageAcceuilDash');
             })
             .catch((error) => {
                 console.log('Login failed');

@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from './logoooo.png';
 import './Header.css';
@@ -6,7 +6,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import axios from "axios";
 
 
-  function Header2({setLoginData}) {
+  function Header2({ setLoginData = () => {} }) {
+
+        // Add a state to manage the authentication status
+        const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+        // UseEffect to check authentication status on component mount
+        useEffect(() => {
+          const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+          setIsAuthenticated(authStatus);
+        }, []);
+
+
 
     const [isHidden, setIsHidden] = useState(false);
 
@@ -20,7 +31,8 @@ import axios from "axios";
     axios
       .get("http://localhost:3001/logout")
       .then((res) => {
-        if (res.data.status === "200") {
+        console.log(res.status);
+        if (res.status === 200) {
           window.location.href = '/';
         } else {
           alert("error");
@@ -30,6 +42,12 @@ import axios from "axios";
       console.log('logout');
       localStorage.removeItem("loginData");
       setLoginData(null);
+
+
+      // isAuthenticated.current = true;
+      console.log('isAuthenticated', isAuthenticated);
+      localStorage.setItem('isAuthenticated', 'false'); // Store the value in localStorage
+      
       return false;// Return false after executing the logout function
   };
   return (
