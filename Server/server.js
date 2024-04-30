@@ -164,9 +164,9 @@ app.get("/logout", (req, res) => {
 });
 
 app.post('/api_balance', async (req, res) => {
-    const {apiKey, apiSecret } = req.body;
+    const {apiKey, apiSecretKey } = req.body;
     try {
-        const result = await executeTransaction(apiKey, apiSecret);
+        const result = await executeTransaction(apiKey, apiSecretKey);
         // Send the result back to the client
         res.status(200).json(result);
     } catch (error) {
