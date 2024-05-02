@@ -5,20 +5,41 @@ import Widget from "./widget/Widget";
 import Featured from './featured/Featured';
 import Chart from './chart/Chart';
 import BinanceLinkForm from './BinanceLink/BinanceLinkForm'; // Import the component for linking Binance account
+import axios from 'axios';
 
 const PageAcceuilDash = () => {
-  // State to track whether the user has linked their Binance account
+  
   const [binanceLinked, setBinanceLinked] = useState(false);
-
+  const [binanceData, setBinanceData] = useState(null);
+  const [balance, setBalance] = useState(null);
   // Render function to show either Binance linking form or dashboard content
+  const handleLinkSuccess = async () => {  
+    try {
+      const response = await axios.get('http://localhost:3001/api_balance2');
+      console.log(response.data);
+      setBinanceData(response.data);
+      setBinanceLinked(true);
+      setBalance(response.data.balance);
+    } catch (error) {
+      console.error('Error fetching Binance data:', error);
+      // Handle error
+    }
+  };
   const renderContent = () => {
     if (binanceLinked) {
       return (
         <div className="homeContainer">
           <div className="widgets">
             <Widget type='CryptoTrends' />
-            <Widget type="balance"/>
-            <Widget type="autoInvestTransactions"/>
+            {binanceLinked && (
+            <>
+              <div className="balance">
+                <h3>Balance</h3>
+                <p>{balance}</p>
+              </div>
+              <Widget type="autoInvestTransactions" />
+            </>
+          )}
           </div>
           <div className="charts">
             <Featured/>
@@ -27,7 +48,15 @@ const PageAcceuilDash = () => {
         </div>
       );
     } else {
-      return <BinanceLinkForm onLinkSuccess={() => setBinanceLinked(true)} />;
+      return (
+        <BinanceLinkForm 
+          onLinkSuccess={() => {
+            handleLinkSuccess();
+            setBinanceLinked(true);
+          }} 
+        />
+      );
+
     }
   };
 

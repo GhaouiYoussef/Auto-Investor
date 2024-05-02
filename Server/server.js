@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt')
 const crypto = require('crypto');
 const coockieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const executeTransaction = require('./transaction.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
@@ -30,6 +31,7 @@ const pool = new Pool({
 });
 // middleware
 app.use(coockieParser());
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors(
      {
@@ -167,6 +169,7 @@ app.post('/api_balance', async (req, res) => {
     const {apiKey, apiSecretKey } = req.body;
     try {
         const result = await executeTransaction(apiKey, apiSecretKey);
+        await pool.query('INSERT INTO api_keys (api_key, api_secret_key) VALUES ($1, $2)', [apiKey, apiSecretKey]);
         // Send the result back to the client
         res.status(200).json(result);
     } catch (error) {
@@ -174,6 +177,26 @@ app.post('/api_balance', async (req, res) => {
         res.status(500).send('Internal server error');
     }
 });
+app.get('/api_balance2', async (req, res) => {
+    try {
+      // Query to retrieve API key and API secret key from the database
+      const queryResult = await pool.query('SELECT api_key, api_secret_key FROM api_keys LIMIT 1');
+  
+      // Check if any rows were returned
+      if (queryResult.rows.length === 0) {
+        return res.status(404).json({ error: 'No API keys found' });
+      }
+      
+      // Extract the API key and API secret key from the query result
+      const { api_key, api_secret_key } = queryResult.rows[0];
+      const result = await executeTransaction(api_key, api_secret_key);
+      await pool.query('DELETE FROM api_keys');
+      // Return the API key and API secret key in the response
+      res.status(200).json(result);
+    } catch (error) {
+      console.error('Error fetching API keys:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  })
 
 app.get('/fetchData', fetchData);
-

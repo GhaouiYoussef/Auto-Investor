@@ -18,6 +18,8 @@ const handleSubmit = async (event) => {
     console.log('request sended');
     setapiKey(''); 
     setapiSecretKey(''); 
+    onLinkSuccess(apiKey, apiSecretKey);
+    onClose();
   }  catch (error) {
     console.error('Error:', error);
     setError('An error occurred while linking the account');
