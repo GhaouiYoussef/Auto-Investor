@@ -19,7 +19,7 @@ const PageAcceuilDash = () => {
       console.log(response.data);
       setBinanceData(response.data);
       setBinanceLinked(true);
-      setBalance(response.data.balance);
+      setBalance(response.data.balances);
     } catch (error) {
       console.error('Error fetching Binance data:', error);
       // Handle error
@@ -31,15 +31,12 @@ const PageAcceuilDash = () => {
         <div className="homeContainer">
           <div className="widgets">
             <Widget type='CryptoTrends' />
-            {binanceLinked && (
-            <>
-              <div className="balance">
-                <h3>Balance</h3>
-                <p>{balance}</p>
-              </div>
+            <div className="balance">
+              <h3>Balance</h3>
+              {/* Display the specific property or value from the balance object */}
+              {balance && <p>{balance.DOGE}</p>}
+            </div>
               <Widget type="autoInvestTransactions" />
-            </>
-          )}
           </div>
           <div className="charts">
             <Featured/>
