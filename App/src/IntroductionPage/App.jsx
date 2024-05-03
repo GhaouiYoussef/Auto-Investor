@@ -66,7 +66,7 @@ const App = () => {
         isAuthenticated.current = false;
         localStorage.setItem('isAuthenticated', 'false'); // Store the value in localStorage
         console.log('isAuthenticated', isAuthenticated);
-        window.location.href = "/Dashboard/PageAcceuilDash";
+        window.location.href = "/Page-Login";
         console.error('Error verifying token:', error);
         console.log('error.message', error.message);
   
