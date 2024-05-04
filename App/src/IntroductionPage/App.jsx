@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './componentsGeneral/Header';
 import Page2 from './componentsSignup-Login/Page2';
@@ -14,11 +14,11 @@ import PaymentSuccess from '../PageDashboard/Payment/PaymentSuccess';
 import TransactionHistory from '../PageDashboard/transactionHistory/TransactionHistory';
 import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
 //import CandlestickChartExplanation from '../PaidClient/CandlestickChartExplanation';
+import axios from 'axios';
 
 import PaidClient from '../PaidClient/PaidClient';
 
 import googleOneTap from "google-one-tap";
-import e from 'cors';
 
 
 const options = {
@@ -29,58 +29,99 @@ const options = {
 };
 
 const App = () => {
-  const [loginData, setLoginData] = useState(       localStorage.getItem("loginData")
-  ? JSON.parse(localStorage.getItem("loginData"))
-  : null
-);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-
-  useEffect(() => {
-    // console.log('loginData', loginData);
-    const pathParts = window.location.pathname.split('/'); // Split the URL path by '/'
-    if ( loginData === null) {
-      console.log('loginData from if', loginData);
-      googleOneTap(options, async (response) => {
-        console.log(response);
-        const res = await fetch("http://localhost:3001/api/google-login", {
-          method: "POST",
-          body: JSON.stringify({
-            token: response.credential,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+  const [loginData, setLoginData] = useState(
+    localStorage.getItem("loginData")
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null
+  );
   
-        const data = await res.json();
-        setLoginData(data); // Set loginData equal to data
-        localStorage.setItem("loginData", JSON.stringify(data));
-        setIsAuthenticated(true);
-        // console.log(data);
-        // console.log('Hello');
-        // console.log('loginData', loginData);
-        if (data) {
+  const isAuthenticated = useRef(localStorage.getItem('isAuthenticated') === 'true');
+  const pathParts = window.location.pathname.split('/');
+  
+  useEffect(() => {
+    const pathParts = window.location.pathname.split('/'); // Split the URL path by '/'
+    console.log('pathParts', pathParts);
+  
+    const fetchData = async () => {
+      try {
+        console.log('loginData for checking', loginData['authToken']);
+        const verif_res = await axios.post("http://localhost:3001/verify-token", { token: loginData['authToken'] });
+        console.log('Verification response:', verif_res.data);
+        console.log('Verification response status:', verif_res.status);
+        
+        // If the verification response status is 200, set isAuthenticated to true
+        if (verif_res.status === 200) {
+          isAuthenticated.current = true;
+          localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
+          if (window.location.pathname === "/Page-Login" || window.location.pathname === "/Page-Signup") {
+            window.location.href = "/Dashboard/PageAcceuilDash";
+          }
+        }
+        // } else {
+        //   window.location.href = "/Page-Login";
+        // }
+      } catch (error) {
+  
+        //This two lines are necessary when normal user log in with email and pass
+        isAuthenticated.current = false;
+        localStorage.setItem('isAuthenticated', 'false'); // Store the value in localStorage
+        console.log('isAuthenticated', isAuthenticated);
+        window.location.href = "/Dashboard/PageAcceuilDash";
+        console.error('Error verifying token:', error);
+        console.log('error.message', error.message);
+  
+        // window.location.href = "/Page-Login";
+  
+      }
+    };
+  
+    console.log('isAuthenticated1 at the start of useEffect', isAuthenticated.current);
+  
+    if (isAuthenticated.current) {
+      fetchData();
+    }
+  
+    if(!isAuthenticated.current && pathParts.length <= 2) {
+      console.log('loginData at the start', loginData);
+      // isAuthenticated.current = true;
+      // localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
+      googleOneTap(options, async (response) => {
+        try {
+          const res = await fetch("http://localhost:3001/api/google-login", {
+            method: "POST",
+            body: JSON.stringify({
+              token: response.credential,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          
+  
+          console.log('nullData');
+          const data = await res.json();
+          console.log('data', data);
+          
+          setLoginData(data); // Set loginData equal to data
+          
+          localStorage.setItem("loginData", JSON.stringify(data));
+          isAuthenticated.current = true;
+          localStorage.setItem('isAuthenticated', 'true'); // Store the value in localStorage
+  
           window.location.href = "/Dashboard/PageAcceuilDash";
+        } catch (error) {
+          console.error('Error fetching data from server:', error);
         }
       });
     }
-    console.log('pathParts', pathParts);
-    console.log('loginData fro elif', loginData);
-    if (pathParts.length <= 2 && loginData !==null ) {
-      console.log('hak lena', loginData);
-      setIsAuthenticated(true);
-      window.location.href = "/Dashboard/PageAcceuilDash";
-    }
-  }, [loginData]);
+  
+    console.log('loginData from Server', loginData);
+  
+  }, [pathParts]); // Include pathParts in the dependency array
   
 
 
-  // const handlelogout = () => {
-  //   console.log('logout');
-  //   localStorage.removeItem("loginData");
-  //   setLoginData(null);
-  // }
+
 
   return (
     <Router>
@@ -117,7 +158,7 @@ const HeaderControl = ({ setLoginData }) => { // Destructure handleLogout from p
   // Function to render the appropriate header based on the route
   function renderHeader() {
     if (location.pathname.startsWith("/Dashboard")) {
-      return <Header2  handleLogoutFromApp={setLoginData}/>; // Pass handleLogout as a prop
+      return <Header2  setLoginData={setLoginData}/>; // Pass handleLogout as a prop
     } else {
       return <Header />;
     }

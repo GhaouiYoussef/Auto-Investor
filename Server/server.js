@@ -53,31 +53,52 @@ function upsert(array, item){
     else array.push(item);
 }
 
-app.post('/api/google-login', async (req ,res)=>{
-      const {token} = req.body;
-      const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: "596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com",
-      })
+// Server-side code (server.js)
 
-const {name, email, picture } = ticket.getPayload();
- const result = await pool.query('SELECT * FROM userg WHERE email = $1', [email]);
-    
-    if (result.rows.length > 0) {
+app.post('/api/google-login', async (req, res) => {
+  try {
+    const { token } = req.body;
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: "596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com",
+    });
+
+    const { name, email, picture } = ticket.getPayload();
+    console.log('name',name);
+    console.log('email',email);
+    console.log('picture',picture);
+
+    // Check if the user exists in the database
+    const userExists = await pool.query('SELECT * FROM userg WHERE email = $1', [email]);
+
+    if (userExists.rows.length > 0) {
       // If the user exists, update the user's data
-      if (result.rows.length > 0) {
-        await pool.query('DELETE FROM userg WHERE email = $1', [email]);
-        await pool.query('INSERT INTO userg (name, email, picture) VALUES ($1, $2, $3)', [name, email, picture]);}
+      await pool.query('DELETE FROM userg WHERE email = $1', [email]);
+      await pool.query('INSERT INTO userg (name, email, picture) VALUES ($1, $2, $3)', [name, email, picture]);
     } else {
       // If the user doesn't exist, insert a new row
       await pool.query('INSERT INTO userg (name, email, picture) VALUES ($1, $2, $3)', [name, email, picture]);
     }
-upsert(users, {name, email, picture});
-res.status(201);
-res.json({name, email, picture});
+    console.log('User data inserted successfully');
+    
+    // Generate JWT token
+    const authToken = jwt.sign({ email, name, picture }, '696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '30s' });
+    
+    console.log('tokenMta3Google',authToken);
 
+    // Set cookie with the generated token
+    res.cookie('tokenMta3Google', authToken, { httpOnly: true });
+    
+    // Respond with the generated token
+    res.status(201).json({ authToken });
+    console.log('response sent successfully',authToken);
+  } catch (error) {
+    console.error('Error processing Google login:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
+  
 //routers
 app.post('/Create',async (req,res) =>{
 const {name,email,password} = req.body
@@ -110,8 +131,9 @@ app.post('/Login',async (req,res) =>{
             const isPasswordMatch = await bcrypt.compare(password, user.password);
             if (isPasswordMatch) {
                  //Passwords match
-                const token = jwt.sign({name},'696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '1d' });
+                const token = jwt.sign({name},'696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '30s' });
                 res.cookie('token',token);
+                console.log('token',token);
                 res.status(200).send('User logged in successfully');
                 console.log('User logged in successfully');
 
@@ -122,14 +144,16 @@ app.post('/Login',async (req,res) =>{
             }
         } else {
             // User does not exist
-            res.status(401).json({ error: 'Invalid email or password' });
             console.log('User not found');
+            res.status(401).json({ error: 'Invalid email or password' });
+            
         }
     } catch (error) {
         console.error('Error inserting user', error);
         res.status(500).send('Internal server error');
     }
     })
+
 app.get('/verify', async (req, res) => {
         const { token } = req.query; // Extract the verification token from the URL query parameters
         try {
@@ -141,6 +165,7 @@ app.get('/verify', async (req, res) => {
                 return res.status(404).send('User not found');
             }
     
+        
             const user = result.rows[0];
     
             // Compare the verification token from the URL with the one stored in the database for the user
@@ -162,7 +187,10 @@ app.get('/verify', async (req, res) => {
     });
 app.get("/logout", (req, res) => {
     res.clearCookie("token");
-    return res.json({ status: "200" });
+        // Send a JSON response with a logout message
+        return res.status(200).json({ message: 'Logout successful' });
+    // return res.json({ status: "200" });
+    
 });
 
 app.post('/api_balance', async (req, res) => {
@@ -200,3 +228,48 @@ app.get('/api_balance2', async (req, res) => {
   })
 
 app.get('/fetchData', fetchData);
+
+
+// We are gpoint to use this function toverify token validity,therefore use it as a condition to check if there is a user logged in or not
+function verifyToken(token) {
+    try {
+      // Verify the token using the secret key
+      const decoded = jwt.verify(token, '696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a');
+  
+      // Check if the token is expired
+      if (decoded.exp < Date.now() / 1000) {
+        return { valid: false, message: 'Token expired' };
+      }
+  
+      // Token is valid
+      return { valid: true, message: 'Token is valid', decoded };
+    } catch (error) {
+      // Token verification failed
+      return { valid: false, message: 'Invalid token' };
+    }
+  }
+  
+  // Usage:
+  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlvdXNzZWYuZ2hhb3VpQGVuc2ktdW1hLnRuIiwibmFtZSI6IllvdXNzZWYgR2hhb3VpIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pIbEJuQXJXaXIzajB3M3czT0NyOUNuRGpZRTByWTQyVkpQcE94UnlBNDJuMk5aZz1zOTYtYyIsImlhdCI6MTcxNDM4Njg5MSwiZXhwIjoxNzE0Mzg2OTIxfQ.lC3UQw0dkbTRufDJS4tv8X-VznOtPxYCQBBWqf1p9iU';
+  // const result = verifyToken(token);
+  // console.log(result);
+
+
+  
+  app.post('/verify-token', async (req, res) => {
+    try {
+      const token = req.body.token;
+      // Verify token logic here
+      const result = verifyToken(token);
+      if (result.valid) {
+        res.status(200).json({ message: 'Token verified successfully' });
+      } else {
+        res.status(400).json({ error: result.message });
+      }
+    } catch (error) {
+      console.error('Error verifying token:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+

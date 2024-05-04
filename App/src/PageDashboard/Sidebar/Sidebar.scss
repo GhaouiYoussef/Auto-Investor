@@ -15,7 +15,7 @@
         .logo {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #6439ff;
+            color: #007bff;
         }
     }
 
@@ -53,7 +53,7 @@
 
                 .icon {
                     font-size: 1rem;
-                    color: #7451f8;
+                    color: #007bff;
                 }
 
                 span {
@@ -75,7 +75,7 @@
             width: 1.25rem; /* Adjusted width for responsiveness */
             height: 1.25rem; /* Adjusted height for responsiveness */
             border-radius: 0.3125rem; /* Adjusted border radius for responsiveness */
-            border: 1px solid #7451f8;
+            border: 1px solid #007bff;
             cursor: pointer;
             margin: 0.3125rem;
 
@@ -97,4 +97,14 @@
     @media screen and (max-width: 768px) {
         width: 70%; /* Adjusted width for smaller screens */
     }
+}
+.PageAcceuilDash .center{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.Sidebar .center ul{
+    flex: 1; /* Let the items grow to fill the available space equally */
+    height: 1000px;
 }
