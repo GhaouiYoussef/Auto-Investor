@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const executeTransaction = require('./transaction.js');
 const checkB = require('./balance.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
+const passwordlost = require('./utils/passwordlost');
 require('dotenv').config();
 const fetchData = require('./fetchData');
 const { OAuth2Client } = require('google-auth-library');
@@ -225,6 +226,28 @@ app.get('/api_balance2', async (req, res) => {
     }
   })
 
+  
+  app.post('/reset',async (req,res) =>{
+    const {email} = req.body
+    try {
+        // Insert user credentials into the users table
+        
+        const query = 'SELECT * FROM users WHERE email = $1 AND is_verified = true';
+        const result=await pool.query(query, [email]);
+        if (result.rows.length > 0) {
+            const emailToken = crypto.randomBytes(64).toString('hex');
+            await passwordlost(email,emailToken);
+            res.status(200).send('email sent successfuly.');
+          } else {
+            console.log('No email token found for the specified email.');
+          }
+    } catch (error) {
+        console.error('Error inserting user', error);
+        res.status(500).send('Internal server error');
+    }
+    })
+    
+    
 app.get('/fetchData', fetchData);
 
 

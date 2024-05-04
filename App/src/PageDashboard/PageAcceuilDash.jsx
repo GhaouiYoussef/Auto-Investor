@@ -16,7 +16,6 @@ const PageAcceuilDash = () => {
   const handleLinkSuccess = async () => {  
     try {
       const response = await axios.get('http://localhost:3001/api_balance2');
-      console.log(response.data);
       setBinanceData(response.data);
       setBinanceLinked(true);
       setBalance(response.data.balances);
