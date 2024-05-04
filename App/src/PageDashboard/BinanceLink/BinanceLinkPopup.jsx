@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 import './BinanceLinkPopup.scss';
 import ClearIcon from '@mui/icons-material/Clear';
-const BinanceLinkPopup = ({ onClose, onLinkSuccess }) => {
-  const [apiKey, setApiKey] = useState('');
-  const [apiSecretKey, setApiSecretKey] = useState('');
-  const [error, setError] = useState('');
+import axios from 'axios';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Validate form fields
-    if (!apiKey.trim() || !apiSecretKey.trim()) {
-      setError('Please enter both API Key and API Secret Key.');
-      return;
-    }
-    // Simulate linking process (replace with your actual logic to link Binance account)
-    // Here, we assume the account is successfully linked
-    // In a real application, you would make a request to your backend to link the account securely
-    // For simplicity, we just call the onLinkSuccess callback
-    onLinkSuccess();
+const BinanceLinkPopup = ({ onClose, onLinkSuccess }) => {
+  
+  const [apiKey, setapiKey] = useState('');
+  const [apiSecretKey, setapiSecretKey] = useState('');
+  const [error, setError] = useState(null);
+// Inside your component
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    // Make POST request to create user
+    await axios.post('http://localhost:3001/api_balance', {apiKey, apiSecretKey });
+    console.log('request sended');
+    setapiKey(''); 
+    setapiSecretKey(''); 
+    onLinkSuccess(apiKey, apiSecretKey);
     onClose();
-  };
+  }  catch (error) {
+    console.error('Error:', error);
+    setError('An error occurred while linking the account');
+    setapiKey('');
+    setapiSecretKey('');
+} 
+};
+
 
   return (
     <div className="binance-link-popup">
@@ -34,7 +42,7 @@ const BinanceLinkPopup = ({ onClose, onLinkSuccess }) => {
               type="text"
               id="apiKey"
               value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
+              onChange={(e) => setapiKey(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -43,7 +51,7 @@ const BinanceLinkPopup = ({ onClose, onLinkSuccess }) => {
               type="password"
               id="apiSecretKey"
               value={apiSecretKey}
-              onChange={(e) => setApiSecretKey(e.target.value)}
+              onChange={(e) => setapiSecretKey(e.target.value)}
             />
           </div>
           <button type="submit">Link Account</button>
