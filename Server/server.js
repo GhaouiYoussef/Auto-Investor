@@ -7,7 +7,9 @@ const coockieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const executeTransaction = require('./transaction.js');
+const checkB = require('./balance.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
+const passwordlost = require('./utils/passwordlost');
 require('dotenv').config();
 // const fetchData = require('./fetchData');
 const fetchDataFromMongoDB = require('./fetchData');
@@ -206,7 +208,7 @@ app.get("/logout", (req, res) => {
 app.post('/api_balance', async (req, res) => {
     const {apiKey, apiSecretKey } = req.body;
     try {
-        const result = await executeTransaction(apiKey, apiSecretKey);
+        const result = await checkB(apiKey, apiSecretKey);
         await pool.query('INSERT INTO api_keys (api_key, api_secret_key) VALUES ($1, $2)', [apiKey, apiSecretKey]);
         // Send the result back to the client
         res.status(200).json(result);
@@ -217,14 +219,11 @@ app.post('/api_balance', async (req, res) => {
 });
 app.get('/api_balance2', async (req, res) => {
     try {
-      // Query to retrieve API key and API secret key from the database
       const queryResult = await pool.query('SELECT api_key, api_secret_key FROM api_keys LIMIT 1');
-  
       // Check if any rows were returned
       if (queryResult.rows.length === 0) {
         return res.status(404).json({ error: 'No API keys found' });
       }
-      
       // Extract the API key and API secret key from the query result
       const { api_key, api_secret_key } = queryResult.rows[0];
       const result = await executeTransaction(api_key, api_secret_key);
@@ -236,6 +235,27 @@ app.get('/api_balance2', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   })
+
+  app.post('/reset',async (req,res) =>{
+    const {email} = req.body
+    try {
+        // Insert user credentials into the users table
+        
+        const query = 'SELECT * FROM users WHERE email = $1 AND is_verified = true';
+        const result=await pool.query(query, [email]);
+        if (result.rows.length > 0) {
+            const emailToken = crypto.randomBytes(64).toString('hex');
+            await passwordlost(email,emailToken);
+            res.status(200).send('email sent successfuly.');
+          } else {
+            console.log('No email token found for the specified email.');
+          }
+    } catch (error) {
+        console.error('Error inserting user', error);
+        res.status(500).send('Internal server error');
+    }
+    })
+    
 // Fetch data route
 
 // app.get('/fetchData', fetchData);
@@ -246,27 +266,17 @@ app.get('/fetchData', fetchDataFromMongoDB);
 // We are gpoint to use this function toverify token validity,therefore use it as a condition to check if there is a user logged in or not
 function verifyToken(token) {
     try {
-      // Verify the token using the secret key
       const decoded = jwt.verify(token, '696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a');
-  
-      // Check if the token is expired
+      
       if (decoded.exp < Date.now() / 1000) {
         return { valid: false, message: 'Token expired' };
       }
-  
-      // Token is valid
       return { valid: true, message: 'Token is valid', decoded };
     } catch (error) {
-      // Token verification failed
       return { valid: false, message: 'Invalid token' };
     }
   }
   
-  // Usage:
-  // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlvdXNzZWYuZ2hhb3VpQGVuc2ktdW1hLnRuIiwibmFtZSI6IllvdXNzZWYgR2hhb3VpIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0pIbEJuQXJXaXIzajB3M3czT0NyOUNuRGpZRTByWTQyVkpQcE94UnlBNDJuMk5aZz1zOTYtYyIsImlhdCI6MTcxNDM4Njg5MSwiZXhwIjoxNzE0Mzg2OTIxfQ.lC3UQw0dkbTRufDJS4tv8X-VznOtPxYCQBBWqf1p9iU';
-  // const result = verifyToken(token);
-  // console.log(result);
-
 
   
   app.post('/verify-token', async (req, res) => {
