@@ -5,7 +5,7 @@ const fs = require('fs');
 const uri = "mongodb+srv://Youssef:azerty12@cluster0.uoe6yol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Initialize the MongoClient
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, );
 
 async function fetchData(req, res) {
     try {
