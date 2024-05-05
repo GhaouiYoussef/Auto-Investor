@@ -11,6 +11,7 @@ async function fetchData(req, res) {
     try {
         // Get the selected coin, start date, and end date from the query string
         const { coin, startDate, endDate } = req.query;
+        console.log(`Fetching data for ${coin} between ${startDate} and ${endDate}...`);
         const startTimestamp = new Date(startDate).getTime();
         const endTimestamp = new Date(endDate).getTime();
 
