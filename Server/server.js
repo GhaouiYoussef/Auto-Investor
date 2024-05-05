@@ -11,7 +11,9 @@ const checkB = require('./balance.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
 const passwordlost = require('./utils/passwordlost');
 require('dotenv').config();
-const fetchData = require('./fetchData');
+// const fetchData = require('./fetchData');
+const fetchDataFromMongoDB = require('./fetchData');
+
 const { OAuth2Client } = require('google-auth-library');
 
 
@@ -181,6 +183,14 @@ app.get('/verify', async (req, res) => {
 
 
             // Provide feedback to the user on the verification status
+            if (result.rows.length === 0) {
+              return res.status(404).send('User not found');
+          }
+    
+          if (user.emailtoken !== token) {
+              return res.status(400).send('Invalid verification token');
+          }
+            
             res.status(200).send('Account verified successfully');
         } catch (error) {
             console.error('Error verifying account:', error);
@@ -225,30 +235,11 @@ app.get('/api_balance2', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   })
+// Fetch data route
 
-  
-  app.post('/reset',async (req,res) =>{
-    const {email} = req.body
-    try {
-        // Insert user credentials into the users table
-        
-        const query = 'SELECT * FROM users WHERE email = $1 AND is_verified = true';
-        const result=await pool.query(query, [email]);
-        if (result.rows.length > 0) {
-            const emailToken = crypto.randomBytes(64).toString('hex');
-            await passwordlost(email,emailToken);
-            res.status(200).send('email sent successfuly.');
-          } else {
-            console.log('No email token found for the specified email.');
-          }
-    } catch (error) {
-        console.error('Error inserting user', error);
-        res.status(500).send('Internal server error');
-    }
-    })
-    
-    
-app.get('/fetchData', fetchData);
+// app.get('/fetchData', fetchData);
+app.get('/fetchData', fetchDataFromMongoDB);
+
 
 
 // We are gpoint to use this function toverify token validity,therefore use it as a condition to check if there is a user logged in or not

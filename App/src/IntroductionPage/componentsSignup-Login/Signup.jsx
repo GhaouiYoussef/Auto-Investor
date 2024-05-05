@@ -1,18 +1,22 @@
 import './Signup.css'
-import React,{useState} from 'react';
+import React,{useState,} from 'react';
 import user_icon from './person.png'
 import email_icon from './email.png'
 import password_icon from './password.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import wp from './wpp.svg'
+import SuccessPage from './SignupSuccess';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+  const navigate = useNavigate();
   const [users,setusers]=useState([])
   const [name,setname]=useState('')
   const [email,setemail]=useState('')
   const [password,setpassword]=useState('')
   const[action,setAction] = useState("Sign Up");
+  const [isSignupSuccess, setIsSignupSuccess] = useState(false);
   // Inside your component
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -42,6 +46,11 @@ function Signup() {
       }
     }
   };
+  if (isSignupSuccess) {
+    setTimeout(() => {
+      navigate('/signup-success'); // Use navigate function to redirect
+    }, 3000); // Redirect to success page after 3 seconds
+  }
   
   
   
