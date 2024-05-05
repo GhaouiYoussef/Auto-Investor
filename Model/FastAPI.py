@@ -1,34 +1,48 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import tensorflow as tf
 import numpy as np
-import keras
-# Load the TensorFlow model
-model = keras.layers.TFSMLayer('./Mo/Model', call_endpoint='serving_default')
+import torch
+
+from BTC.Dlinear import Model
+from BTC.Dlinear import Configs
+
+# Load the PyTorch model
+model = Model(Configs())
+model.load_state_dict(torch.load(r'model_BTC_weights.pth'))
+model.eval()  # Set model to evaluation mode
 
 # Create FastAPI app
 app = FastAPI()
 
+# Define the input data schema
+class InputData(BaseModel):
+    sequence: list[float]
+
 # Define the output data schema
 class Prediction(BaseModel):
-    sentiment: int
+    predictions: list[float]
 
-# Define API endpoint for sentiment prediction
+# Define API endpoint for predicting the next 10 values
 @app.post("/predict", response_model=Prediction)
-async def predict(image_file: UploadFile = File(...)):
+async def predict(data: InputData):
     try:
-        # Load and preprocess the image
-        contents = await image_file.read()
-        image_data = tf.image.decode_jpeg(contents, channels=3)
-        image_data = tf.image.resize(image_data, [224, 224])
-        image_data = tf.expand_dims(image_data, axis=0)
-
-        # Perform inference
-        predictions = model(image_data)
-        predicted_sentiment = np.argmax(predictions)
-
-        # Return the prediction
-        return {"sentiment": int(predicted_sentiment)}
+        print('hello')
+        # Extract the input sequence from the request data
+        input_sequence = data.sequence
+        print(input_sequence)
+        # Convert the input sequence to a PyTorch tensor
+        input_tensor = torch.tensor(input_sequence, dtype=torch.float).unsqueeze(0)  # Add batch dimension
+        print(input_tensor.reshape(1, input_tensor.shape[1], 1).shape)
+        input_tensor = input_tensor.reshape(1, input_tensor.shape[1], 1)
+        # Perform inference to get predictions for the next 10 values
+        with torch.no_grad():
+            predictions = model(input_tensor)
+        print(predictions)
+        # Convert predictions to a list
+        predictions_list = predictions.squeeze().tolist()
+        
+        # Return the predicted values
+        return {"predictions": predictions_list}
     except Exception as e:
         # In case of any errors, return an HTTP 500 error
         raise HTTPException(status_code=500, detail=str(e))

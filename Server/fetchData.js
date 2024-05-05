@@ -24,7 +24,7 @@ async function fetchData(req, res) {
         const collection = database.collection("Info");
 
         // Fetch data from MongoDB
-        const data = await collection.find({'symbol':'AAVEUSDT'}).toArray();
+        const data = await collection.find({'symbol':'BTCUSDT'}).toArray();
 
         // Send the data as JSON response
         res.json(data);
