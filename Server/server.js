@@ -235,6 +235,27 @@ app.get('/api_balance2', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   })
+
+  app.post('/reset',async (req,res) =>{
+    const {email} = req.body
+    try {
+        // Insert user credentials into the users table
+        
+        const query = 'SELECT * FROM users WHERE email = $1 AND is_verified = true';
+        const result=await pool.query(query, [email]);
+        if (result.rows.length > 0) {
+            const emailToken = crypto.randomBytes(64).toString('hex');
+            await passwordlost(email,emailToken);
+            res.status(200).send('email sent successfuly.');
+          } else {
+            console.log('No email token found for the specified email.');
+          }
+    } catch (error) {
+        console.error('Error inserting user', error);
+        res.status(500).send('Internal server error');
+    }
+    })
+    
 // Fetch data route
 
 // app.get('/fetchData', fetchData);
