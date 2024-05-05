@@ -4,6 +4,7 @@ import Header from './componentsGeneral/Header';
 import Page2 from './componentsSignup-Login/Page2';
 import PageDacceuil from './componentsPageDacceuil/PageDacceuil';
 import Login from './componentsSignup-Login/Loginin';
+import SignupSuccess from './componentsSignup-Login/SignupSuccess';
 import Dashboard from '../PageDashboard/Dashboard';
 import Header2 from './componentsGeneral/Header2';
 import Profile from '../PageDashboard/Profile';

@@ -9,17 +9,17 @@ const jwt = require('jsonwebtoken');
 const executeTransaction = require('./transaction.js');
 const sendVerificationEmail = require('./utils/sendVerificationEmail');
 require('dotenv').config();
-const fetchData = require('./fetchData');
+const fetchDataFromMongoDB = require('./fetchData');
 const { OAuth2Client } = require('google-auth-library');
+const { MongoClient } = require('mongodb'); // Import MongoClient from mongodb package
 
-
+// MongoDB connection URI
+const uri = "mongodb+srv://Youssef:azerty12@cluster0.uoe6yol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const client = new OAuth2Client("596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com")
 const app = express();
 
 app.listen(3001, () => console.log('server is running on port 3001'));
-
-
 
 // Connect to database
 const pool = new Pool({
@@ -33,23 +33,19 @@ const pool = new Pool({
 app.use(coockieParser());
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors(
-     {
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
 
-        origin:["http://localhost:3000"],
-        methods: ["POST, GET"],
-        credentials: true
-     }
-));
+// Array to store users
+const users = [];
 
-
-
-const users= [];
-
-
+// Function to upsert user data
 function upsert(array, item){
-     const i = array.findIndex((_item)=>_item.email === item.email);
-     if (i> -1) array[i] = item;
+    const i = array.findIndex((_item) => _item.email === item.email);
+    if (i > -1) array[i] = item;
     else array.push(item);
 }
 
@@ -109,26 +105,27 @@ try {
     const query = 'INSERT INTO users (name, email, password, is_verified, emailtoken) VALUES ($1, $2, $3, false, $4)' ;
     await pool.query(query, [name, email, hashedPassword,emailToken]);
 
-    await sendVerificationEmail(email,emailToken);
+        await sendVerificationEmail(email, emailToken);
 
-    res.status(200).send('User registered successfully. Verification email sent.');
-} catch (error) {
-    console.error('Error inserting user', error);
-    res.status(500).send('Internal server error');
-}
-})
-//login 
-app.post('/Login',async (req,res) =>{
-    
-    const {email,password} = req.body
+        res.status(200).send('User registered successfully. Verification email sent.');
+    } catch (error) {
+        console.error('Error inserting user', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
+// Login route
+app.post('/Login', async (req, res) => {
+    const { email, password } = req.body;
     try {
         const query = 'SELECT * FROM users WHERE email = $1';
         const result = await pool.query(query, [email]);
 
         if (result.rows.length > 0) {
             const user = result.rows[0];
-            const name= user.name;
+            const name = user.name;
             const isPasswordMatch = await bcrypt.compare(password, user.password);
+
             if (isPasswordMatch) {
                  //Passwords match
                 const token = jwt.sign({name},'696ea2d3de7c2c0eb1a66f1f82f4a1493723436e9612f73e911d647431a836304bdeb17f45e875e0f4d740c2a398920c09924002775a42cc4ff9ce2fa2db408a', { expiresIn: '30s' });
@@ -136,9 +133,7 @@ app.post('/Login',async (req,res) =>{
                 console.log('token',token);
                 res.status(200).send('User logged in successfully');
                 console.log('User logged in successfully');
-
             } else {
-                // Passwords do not match
                 res.status(401).json({ error: 'Invalid email or password' });
                 console.log('Invalid email or password');
             }
@@ -149,7 +144,7 @@ app.post('/Login',async (req,res) =>{
             
         }
     } catch (error) {
-        console.error('Error inserting user', error);
+        console.error('Error logging in user:', error);
         res.status(500).send('Internal server error');
     }
     })
@@ -177,14 +172,27 @@ app.get('/verify', async (req, res) => {
             const updateQuery = 'UPDATE users SET is_verified = true, emailtoken = NULL WHERE id = $1';
             await pool.query(updateQuery, [user.id]);
 
-
-            // Provide feedback to the user on the verification status
-            res.status(200).send('Account verified successfully');
-        } catch (error) {
-            console.error('Error verifying account:', error);
-            res.status(500).send('Internal server error');
+        if (result.rows.length === 0) {
+            return res.status(404).send('User not found');
         }
-    });
+
+        const user = result.rows[0];
+
+        if (user.emailtoken !== token) {
+            return res.status(400).send('Invalid verification token');
+        }
+
+        const updateQuery = 'UPDATE users SET is_verified = true, emailtoken = NULL WHERE id = $1';
+        await pool.query(updateQuery, [user.id]);
+
+        res.status(200).send('Account verified successfully');
+    } catch (error) {
+        console.error('Error verifying account:', error);
+        res.status(500).send('Internal server error');
+    }
+});
+
+// Logout route
 app.get("/logout", (req, res) => {
     res.clearCookie("token");
         // Send a JSON response with a logout message
@@ -193,6 +201,7 @@ app.get("/logout", (req, res) => {
     
 });
 
+// API balance route
 app.post('/api_balance', async (req, res) => {
     const {apiKey, apiSecretKey } = req.body;
     try {
@@ -227,7 +236,8 @@ app.get('/api_balance2', async (req, res) => {
     }
   })
 
-app.get('/fetchData', fetchData);
+// Fetch data route
+app.get('/fetchData', fetchDataFromMongoDB);
 
 
 // We are gpoint to use this function toverify token validity,therefore use it as a condition to check if there is a user logged in or not
