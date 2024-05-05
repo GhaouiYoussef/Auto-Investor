@@ -20,12 +20,13 @@ async function fetchData(req, res) {
         // Select the database and collection
         const database = client.db("Coins");
         const collection = database.collection("Info");
-
         // Fetch data from MongoDB based on the selected coin and date range
         const data = await collection.find({
             'symbol': coin,
             'timestamp': { $gte: startTimestamp, $lte: endTimestamp }
         }).toArray();
+        // console.log(data);
+
 
         // Send the data as JSON response
         res.json(data);
