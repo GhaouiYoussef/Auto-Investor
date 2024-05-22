@@ -1,0 +1,113 @@
+.transaction-page {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #14151a;
+  }
+  
+  .transaction-form {
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .form-header {
+    color: #c1c1c1;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .currency-selector {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .currency-selector label {
+    color: #8c8c8c;
+    margin-right: 10px;
+  }
+  
+  .currency-selector select {
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .limit-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .limit {
+    display: flex;
+    align-items: center;
+  }
+  
+  .limit span {
+    color: #c1c1c1;
+    font-size: 14px;
+  }
+  
+  .limit-dropdown {
+    margin-left: 5px;
+    color: #c1c1c1;
+  }
+  
+  .form-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    color: #8c8c8c;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .buy-button, .sell-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .buy-button {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .buy-button:hover {
+    background-color: #218838;
+  }
+  
+  .sell-button {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .sell-button:hover {
+    background-color: #c82333;
+  }
+  

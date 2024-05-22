@@ -14,16 +14,20 @@ async function fetchData(req, res) {
         console.log(`Fetching data for ${coin} between ${startDate} and ${endDate}...`);
         const startTimestamp = new Date(startDate).getTime();
         const endTimestamp = new Date(endDate).getTime();
-
+        // const startTimestamp = Math.floor(new Date(startDate).getTime() / 1000);
+        // const endTimestamp = Math.floor(new Date(endDate).getTime() / 1000);
+        console.log(startTimestamp);
+        console.log(endTimestamp);
         // Connect to the MongoDB server
         await client.connect();
 
         // Select the database and collection
         const database = client.db("Coins");
-        const collection = database.collection("Info");
+        const collection = database.collection('Info');
         // Fetch data from MongoDB based on the selected coin and date range
+        console.log(coin+'USDT');
         const data = await collection.find({
-            'symbol': coin,
+            'symbol': coin+'USDT',
             'timestamp': { $gte: startTimestamp, $lte: endTimestamp }
         }).toArray();
         // console.log(data);
@@ -31,7 +35,7 @@ async function fetchData(req, res) {
 
         // Send the data as JSON response
         res.json(data);
-
+        console.log(data);
         console.log(`Data sent successfully.`);
     } catch (error) {
         console.error("An error occurred:", error);

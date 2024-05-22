@@ -13,6 +13,7 @@ const passwordlost = require('./utils/passwordlost');
 require('dotenv').config();
 // const fetchData = require('./fetchData');
 const fetchDataFromMongoDB = require('./fetchData');
+const fetchLast30Data = require('./fetchLast30Data');
 
 const { OAuth2Client } = require('google-auth-library');
 
@@ -260,6 +261,7 @@ app.get('/api_balance2', async (req, res) => {
 
 // app.get('/fetchData', fetchData);
 app.get('/fetchData', fetchDataFromMongoDB);
+app.get('/fetchLast30Data', fetchLast30Data);
 
 
 

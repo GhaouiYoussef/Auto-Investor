@@ -18,10 +18,9 @@ import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
 import axios from 'axios';
 import Currency from '../PageDashboard/Currency/Currency';
 import PaidClient from '../PaidClient/PaidClient';
-
 import googleOneTap from "google-one-tap";
-
-
+import TransactionPage from '../PageDashboard/Currency/TransactionPage';
+import PredictionChart from '../PageDashboard/Prediction_chart/PredictionChart';
 const options = {
   client_id: "596157546363-nkhul4k9ieephhifor3ag73it56lj3ar.apps.googleusercontent.com",
   auto_select: false,
@@ -136,13 +135,13 @@ const App = () => {
           <Route path="/Page-Login" element={<Login />} />
           <Route path="/Dashboard" component={<Dashboard />} />
           <Route path="/Dashboard/TransactionHistory" element={<TransactionHistory />} />
-          <Route path="/Dashboard/Profile" element={<Profile />} />
+          <Route path="/Dashboard/Profile" element={<PredictionChart />} />
           <Route path="/Dashboard/PageAcceuilDash" element={<PageAcceuilDash />} />
           <Route path="/Dashboard/Packages" element={<Packages />} />
           <Route path="/Dashboard/Payment" element={<Payment />} />
           <Route path="/Dashboard/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Dashboard/PaidClient" element={<PaidClient />} />
-          <Route path="/Dashboard/Currency" element={<Currency />} />
+          <Route path="/Dashboard/Currency" element={<TransactionPage />} />
         </Routes>
       </div>
     </Router>

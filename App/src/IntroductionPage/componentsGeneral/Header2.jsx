@@ -72,10 +72,10 @@ import axios from "axios";
           <div className='site-btn' onClick={handleLogout}>Log Out</div>
           <nav className="main-menu">
             <ul className="menu-list">
-              <li><Link to='/Dashboard/Profile'>Profile</Link></li>
+              <li><Link to='/Dashboard/Profile'>Predict</Link></li>
               <li><Link to='/Dashboard/PageAcceuilDash'>Home</Link></li>
               <li><Link to="/Dashboard/Packages">Offers</Link></li>
-              <li><Link to="/Dashboard/Currency">Currency</Link></li>
+              <li><Link to="/Dashboard/Currency">Buy/Sell</Link></li>
             </ul>
           </nav>
         </div>
