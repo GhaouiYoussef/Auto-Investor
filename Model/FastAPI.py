@@ -30,6 +30,7 @@ async def predict(data: InputData):
         # Extract the input sequence from the request data
         input_sequence = data.sequence
         print(input_sequence)
+        
         # Convert the input sequence to a PyTorch tensor
         input_tensor = torch.tensor(input_sequence, dtype=torch.float).unsqueeze(0)  # Add batch dimension
         print(input_tensor.reshape(1, input_tensor.shape[1], 1).shape)

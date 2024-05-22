@@ -88,7 +88,7 @@ class Model(nn.Module):
     
 class Configs:
     def __init__(self):
-        self.seq_len = 60  # Sequence length
+        self.seq_len = 30  # Sequence length
         self.pred_len = 10  # Prediction length
         self.individual = True  # Whether to have individual linear layers for each channel
         self.enc_in = 1  # Number of input channels

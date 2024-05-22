@@ -75,7 +75,7 @@ import axios from "axios";
               <li><Link to='/Dashboard/Profile'>Profile</Link></li>
               <li><Link to='/Dashboard/PageAcceuilDash'>Home</Link></li>
               <li><Link to="/Dashboard/Packages">Offers</Link></li>
-              <li><Link to="/">Currency</Link></li>
+              <li><Link to="/Dashboard/Currency">Currency</Link></li>
             </ul>
           </nav>
         </div>

@@ -16,7 +16,7 @@ import TransactionHistory from '../PageDashboard/transactionHistory/TransactionH
 import PageAcceuilDash from '../PageDashboard/PageAcceuilDash';
 //import CandlestickChartExplanation from '../PaidClient/CandlestickChartExplanation';
 import axios from 'axios';
-
+import Currency from '../PageDashboard/Currency/Currency';
 import PaidClient from '../PaidClient/PaidClient';
 
 import googleOneTap from "google-one-tap";
@@ -142,6 +142,7 @@ const App = () => {
           <Route path="/Dashboard/Payment" element={<Payment />} />
           <Route path="/Dashboard/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Dashboard/PaidClient" element={<PaidClient />} />
+          <Route path="/Dashboard/Currency" element={<Currency />} />
         </Routes>
       </div>
     </Router>
