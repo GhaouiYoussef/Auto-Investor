@@ -1,6 +1,5 @@
-# ![Auto-Investor Logo](logooo.png)
-
 # Auto-Investor
+<img src="logoooo.png" alt="Auto-Investor Logo" width="200">
 
 ## Project Overview
 
@@ -34,8 +33,8 @@ Auto-Investor is an advanced, automated crypto investment wallet designed to sim
 - Regular repository documentation for change tracking and version management.
 
 ## Demo
-
-Check out the [demo video](Demo_AutoInvestor.mp4) to see Auto-Investor in action! Here, you’ll witness real-time predictions, seamless interactions with the user interface, and how the app handles cryptocurrency investments efficiently.
+![](Demo.png)
+Check out the [demo video](https://www.linkedin.com/posts/youssef-ghaoui-3a82a222a_ai-cryptocurrency-binance-activity-7206331248120659970-REm4?utm_source=share&utm_medium=member_desktop) on my likedin post  to see Auto-Investor in action! Here, you’ll witness real-time predictions, seamless interactions with the user interface, and how the app handles cryptocurrency investments efficiently.
 
 ---
 
