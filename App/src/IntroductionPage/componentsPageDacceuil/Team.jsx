@@ -24,7 +24,7 @@ const Team = () => {
             <h2>{member.name}</h2>
             <span>{member.title}</span>
           </div>
-          <p>{member.description}</p>
+          {/* <p>{member.description}</p> */}
         </div>
       </div>
     );
@@ -33,35 +33,35 @@ const Team = () => {
   // Define team members' data
   const teamMembers = [
     {
-      name: 'Youssef GHAOUI',
-      title: 'AI Engineer and Project Manager',
+      name: 'Youssef Ghaoui',
+      title: 'ML Engineer',
       image: yg,
       socialMedia: [
-        { platform: 'facebook', url: 'https://www.facebook.com/' },
-        { platform: 'linkedin', url: 'https://www.linkedin.com/' },
-        { platform: 'twitter', url: 'https://www.twitter.com/' }
+        // { platform: 'facebook', url: 'https://www.facebook.com/' },
+        { platform: 'linkedin', url: 'https://www.linkedin.com/in/youssef-ghaoui-3a82a222a/' },
+        // { platform: 'twitter', url: 'https://www.twitter.com/' }
       ],
       description: 'Youssef is an expert in business development and a valued member of our team. He excels at bringing new ideas to the table and helping clients achieve their goals.'
     },
     {
-      name: 'Hatem',
-      title: 'Marketing Director',
+      name: 'Hatem Nefzi',
+      title: 'Software Egineer',
       image: 'img/member/2.jpg',
       socialMedia: [
-        { platform: 'facebook', url: 'https://www.facebook.com/' },
-        { platform: 'linkedin', url: 'https://www.linkedin.com/' },
-        { platform: 'twitter', url: 'https://www.twitter.com/' }
+        // { platform: 'facebook', url: 'https://www.facebook.com/' },
+        { platform: 'linkedin', url: 'https://www.linkedin.com/in/nefzi-hatem-aa7047285/' },
+        // { platform: 'twitter', url: 'https://www.twitter.com/' }
       ],
       description: 'Hatem leads the marketing team and has a wealth of experience in the industry. His expertise and creativity bring innovation to our marketing strategies.'
     },
     {
-      name: 'Khalil',
-      title: 'Product Manager',
+      name: 'Khalil Trabelsi',
+      title: 'Sofware Engineer',
       image: kt,
       socialMedia: [
-        { platform: 'facebook', url: 'https://www.facebook.com/' },
-        { platform: 'linkedin', url: 'https://www.linkedin.com/' },
-        { platform: 'twitter', url: 'https://www.twitter.com/' }
+        // { platform: 'facebook', url: 'https://www.facebook.com/' },
+        { platform: 'linkedin', url: 'https://www.linkedin.com/in/khalil-trabelsi-softwareengin/' },
+        // { platform: 'twitter', url: 'https://www.twitter.com/' }
       ],
       description: 'Khalil is our product manager, ensuring that every product meets the highest standards. His attention to detail and dedication are vital to our success.'
     }
