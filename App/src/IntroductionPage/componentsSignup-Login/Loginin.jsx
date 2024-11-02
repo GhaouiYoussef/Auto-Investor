@@ -5,7 +5,7 @@ import password_icon from './password.png';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import wp from './wpp.svg';
-import googleOneTap from "google-one-tap"
+// import googleOneTap from "google-one-tap"
 import { useLocation } from 'react-router-dom'; // Assuming you're using React Router
 
 
