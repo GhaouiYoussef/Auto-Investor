@@ -6,7 +6,7 @@ import password_icon from './password.png'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import wp from './wpp.svg'
-import SuccessPage from './SignupSuccess';
+// import SuccessPage from './SignupSuccess';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
