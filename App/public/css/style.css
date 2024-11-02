@@ -344,7 +344,7 @@ ol {
 	display: block;
 	background-image: url("../img/hero-bg.png");
 	background-size: cover;
-	background-color: #f3f7f9;
+	/* background-color: #f3f7f9; */
 	background-position: right top;
 	background-repeat: no-repeat;
 	position: relative;
@@ -538,7 +538,7 @@ ol {
 -----------------------*/
 
 .team-section {
-	background: #f3f7f9;
+	/* background: #f3f7f9; */
 	overflow: hidden;
 }
 
@@ -600,7 +600,7 @@ ol {
 
 .member-social {
 	padding-top: 25px;
-	background: #fff;
+	/* background: #fff; */
 	position: relative;
 	z-index: 2;
 }

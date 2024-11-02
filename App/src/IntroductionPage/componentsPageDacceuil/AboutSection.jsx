@@ -11,7 +11,11 @@ function AboutSection() {
             <h5>Your Smart Path to Effortless Crypto Investment</h5>
             <p>
               Welcome to Cryvor—your trusted platform for automated, streamlined cryptocurrency investments.
-              Using cutting-edge algorithms, Cryvor simplifies the complexities of crypto investing, providing you with a seamless way to grow your digital assets. Whether you're a seasoned investor or just starting your crypto journey, Cryvor equips you with the tools to make informed decisions and stay ahead in the fast-paced digital market.
+              Using cutting-edge algorithms, Cryvor simplifies the complexities of crypto investing, providing you with a seamless way to grow your digital assets. 
+              Whether you're a seasoned investor or new to the crypto world, Cryvor equips you with the tools to make informed decisions and stay ahead in the fast-paced digital market.
+            </p>
+            <p>
+              No prior knowledge of cryptocurrency or finance is needed to use Cryvor—all you need is a Binance account! Our platform is accessible to all ages, making it easy for anyone to start their crypto journey with confidence.
             </p>
             <a href="/get-started" className="site-btn sb-gradients sbg-line mt-5">Get Started</a>
           </div>
