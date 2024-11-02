@@ -1,42 +1,47 @@
-.container.text-center .roww {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container.text-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.center-container .ah {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 5%;
-}
-.containerf {
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: center;
-  display: fixed;
-  color: #004a75;
+.features-section .feature {
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
-.containerf h4{
-  color: white;
+.features-section .feature:hover {
+  transform: translateY(-10px);
 }
-.features-section.spad.gradient-bgp{
-  background: none;
-  background: linear-gradient(0.25turn, #000, #09101a, #09101a);}
-.containerf .row{
+
+.features-section .icon-wrapper {
+  font-size: 3rem; /* Adjust icon size */
+  color: #007bff; /* Customize to your theme */
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
 }
-.containerp .row{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+
+.features-section .feature-content h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #05407f;
+}
+
+.features-section .feature-content p {
+  color: #666;
+  font-size: 1rem;
+  margin: 10px 0 20px;
+}
+
+.features-section .readme span {
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.features-section .readme:hover span {
+  text-decoration: underline;
 }
